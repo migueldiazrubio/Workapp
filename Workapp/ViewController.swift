@@ -49,7 +49,6 @@ class ViewController: UIViewController {
         }
 
         timerLabel.text = "\(strPomodoroMinutes):00"
-        
         pomodoroManager.stop()
         pomodoroManager.counting = false
 
