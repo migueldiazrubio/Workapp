@@ -10,7 +10,7 @@
 			<key>Key</key>
 			<string>showTutorial</string>
 			<key>Title</key>
-			<string>Show tutorial on launch</string>
+			<string>Tutorial</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>

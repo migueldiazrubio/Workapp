@@ -60,7 +60,7 @@ class PomodoroManager {
         } else {
             remainSeconds = pomodoroMinutes * 60
         }
-
+        
         // Cancelamos todas las notificaciones locales
         UIApplication.sharedApplication().cancelAllLocalNotifications()
     }
@@ -71,7 +71,7 @@ class PomodoroManager {
         let cal: NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
         
         let beginTodayDate: NSDate = cal.dateBySettingHour(0, minute: 0, second: 0, ofDate: NSDate(), options: NSCalendarOptions())!
-
+        
         let endTodayDate: NSDate = cal.dateBySettingHour(23, minute: 59, second: 59, ofDate: NSDate(), options: NSCalendarOptions())!
         
         let fetchRequest = NSFetchRequest(entityName: "Pomodoro")
@@ -98,9 +98,9 @@ class PomodoroManager {
     func remainNextLocalNotification() {
         
         let notificationsArray = UIApplication.sharedApplication().scheduledLocalNotifications
-
+        
         if (notificationsArray.count > 0) {
-
+            
             let notification : UILocalNotification = notificationsArray.first as UILocalNotification
             
             
@@ -187,7 +187,7 @@ class PomodoroManager {
         notification.timeZone = NSTimeZone.defaultTimeZone()
         notification.applicationIconBadgeNumber = 0;
         notification.soundName = "workapp.mp3"
-
+        
         notification.category = "POMODORO_CATEGORY"
         
         if (breakTime) {
@@ -203,5 +203,5 @@ class PomodoroManager {
         // TODO: Aqui habría que guardar en disco el fireDate
         
     }
-
+    
 }

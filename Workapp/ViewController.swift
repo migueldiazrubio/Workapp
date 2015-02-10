@@ -22,9 +22,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var todayLabel: UILabel!
     
     func startStop(gesture : UITapGestureRecognizer) {
-
+        
         if (pomodoroManager.counting) {
-
+            
             resetTimer()
             pomodoroManager.stop()
             pomodoroManager.counting = false
@@ -40,18 +40,18 @@ class ViewController: UIViewController {
     }
     
     func resetTimer() {
-
+        
         var strPomodoroMinutes = ""
         if (pomodoroManager.breakTime) {
             strPomodoroMinutes = String(format: "%02d", pomodoroManager.breakMinutes)
         } else {
             strPomodoroMinutes = String(format: "%02d", pomodoroManager.pomodoroMinutes)
         }
-
+        
         timerLabel.text = "\(strPomodoroMinutes):00"
         pomodoroManager.stop()
         pomodoroManager.counting = false
-
+        
     }
     
     func updateLeaderboard() {
@@ -75,30 +75,30 @@ class ViewController: UIViewController {
         if (resto != 0) {
             retorno += String(resto)
         }
-
+        
         return retorno
     }
     
     func updateTimer(timer: NSTimer) {
         
         pomodoroManager.remainSeconds -= 1
-
+        
         if (pomodoroManager.remainSeconds == 0) {
             
             if (pomodoroManager.breakTime) {
-
+                
                 // Se ha completado el descanso
                 pomodoroManager.breakFinished()
                 switchToPomodoro(true)
-
+                
             } else {
-
+                
                 // Se ha completado correctamente un pomodoro
                 pomodoroManager.pomodoroFinished()
                 switchToBreakTime(true)
                 
             }
-
+            
             resetTimer()
             
         }
@@ -114,7 +114,7 @@ class ViewController: UIViewController {
     }
     
     func switchToPomodoro(animation: Bool) {
-
+        
         pomodoroManager.breakTime = false
         
         if (animation) {
@@ -128,9 +128,9 @@ class ViewController: UIViewController {
                 self.view.backgroundColor = self.colours[color] as? UIColor
             }
         }
-
+        
         updateLeaderboard()
-
+        
     }
     
     func switchToBreakTime(animation: Bool) {
@@ -156,9 +156,15 @@ class ViewController: UIViewController {
     func openDemoTutorial() {
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
-        let showTutorial = userDefaults.boolForKey("showTutorial")
+        var showTutorial : Bool?
         
-        if (showTutorial) {
+        if let flagValue = userDefaults.objectForKey("showTutorial") as? Bool {
+            showTutorial = flagValue
+        } else {
+            showTutorial = true
+        }
+        
+        if (showTutorial! || true) {
             // Lanzamos la demo
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let demoVC = storyboard.instantiateViewControllerWithIdentifier("demoViewController") as DemoViewController
@@ -180,7 +186,7 @@ class ViewController: UIViewController {
         updateLeaderboard()
         
     }
-
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -210,7 +216,7 @@ class ViewController: UIViewController {
         
         let timerGesture = UIPanGestureRecognizer(target: self, action: Selector("timerGesture:"))
         self.timerLabel.addGestureRecognizer(timerGesture)
-
+        
         //TODO: Hacer que el gesto de cambiar los minutos solo funcione sobre el UILabel
         
         let tapGesture = UITapGestureRecognizer(target: self, action: Selector("startStop:"))
@@ -229,6 +235,8 @@ class ViewController: UIViewController {
     
     func appActive(notification : NSNotification) {
         
+        openDemoTutorial()
+        
         // TODO: Aqui habría que recuperar de disco el fireDate
         // y actualizar el contador en consecuencia
         if (pomodoroManager.breakTime) {
@@ -236,8 +244,6 @@ class ViewController: UIViewController {
         } else {
             switchToPomodoro(false)
         }
-        
-        //openDemoTutorial()
         
         let scheduledLocalNotifications = UIApplication.sharedApplication().scheduledLocalNotifications
         
@@ -272,12 +278,12 @@ class ViewController: UIViewController {
             if let fireDate = scheduledLocalNotifications.last?.fireDate {
                 pomodoroManager.remainSeconds = Int(fireDate.timeIntervalSinceNow)
             }
-
+            
             if (pomodoroManager.counting) {
                 pomodoroManager.timer.invalidate()
                 pomodoroManager.timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("updateTimer:"), userInfo: nil, repeats: true)
             }
-        
+            
         }
         
         pomodoroManager.updateBadgeIcon()
@@ -287,7 +293,7 @@ class ViewController: UIViewController {
     
     // Touches methods
     func colorGesture (gesture : UIPanGestureRecognizer) {
-    
+        
         if (gesture.numberOfTouches() == 2) {
             
             if (!pomodoroManager.counting) {
@@ -331,7 +337,7 @@ class ViewController: UIViewController {
             if (gesture.numberOfTouches() == 1) {
                 
                 // Changing pomodoro or break minutes
-            
+                
                 if (!pomodoroManager.counting) {
                     
                     var point = gesture.translationInView(self.view)
@@ -372,7 +378,7 @@ class ViewController: UIViewController {
                     resetTimer()
                     
                 }
-
+                
             }
             
         }
@@ -391,11 +397,11 @@ class ViewController: UIViewController {
     }
     
     func updateClock(timer: NSTimer) {
-
+        
         UIView.animateWithDuration(1.0, animations: { () -> Void in
             self.clockLabel.hidden = false
         })
-
+        
         let formatter = NSDateFormatter()
         formatter.dateFormat = "HH:mm"
         let now : String = formatter.stringFromDate(NSDate())

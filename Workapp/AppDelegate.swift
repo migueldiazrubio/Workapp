@@ -10,12 +10,12 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
     let pomodoroManager = PomodoroManager.sharedInstance
-
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-
+        
         pomodoroManager.promptForNotificationPermissions()
         loadData()
         
@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(application: UIApplication) {
         saveData()
     }
-
+    
     func applicationWillTerminate(application: UIApplication) {
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         saveData()
@@ -56,18 +56,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         
         userDefaults.setObject(pomodoroManager.pomodoroMinutes, forKey: "pomodoroMinutes")
-
+        
         userDefaults.setObject(pomodoroManager.breakMinutes, forKey: "breakMinutes")
         
         userDefaults.setObject(pomodoroManager.pomodoroColor, forKey: "pomodoroColor")
         userDefaults.setObject(pomodoroManager.breakColor, forKey: "breakColor")
-
+        
         NSUserDefaults.standardUserDefaults().synchronize()
         
     }
     
     func loadData() {
-
+        
         let userDefaults = NSUserDefaults.standardUserDefaults()
         
         var pomodoroMins : Int? = userDefaults.objectForKey("pomodoroMinutes") as Int?
@@ -111,7 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if identifier == "BREAK_ACTION" {
                 pomodoroManager.breakTime = true
             }
-
+            
             pomodoroManager.stop()
             pomodoroManager.start()
         }

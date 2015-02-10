@@ -16,30 +16,59 @@ class DemoViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UIPageControl.appearance().backgroundColor = UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 1.0)
+        self.view.backgroundColor = UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 1.0)
+        
+        // Configuramos el DEMO
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let introVC = storyboard.instantiateViewControllerWithIdentifier("introViewController") as IntroViewController
-        introVC.parentPageViewController = self
-
-        let firstVC = storyboard.instantiateViewControllerWithIdentifier("firstViewController") as FirstViewController
+        let firstVC = storyboard.instantiateViewControllerWithIdentifier("stepViewController") as StepViewController
         firstVC.parentPageViewController = self
-
-        let secondVC = storyboard.instantiateViewControllerWithIdentifier("secondViewController") as SecondViewController
+        
+        let secondVC = storyboard.instantiateViewControllerWithIdentifier("stepViewController") as StepViewController
         secondVC.parentPageViewController = self
         
-        let thirdVC = storyboard.instantiateViewControllerWithIdentifier("thirdViewController") as ThirdViewController
+        let thirdVC = storyboard.instantiateViewControllerWithIdentifier("stepViewController") as StepViewController
         thirdVC.parentPageViewController = self
-
-        let exitVC = storyboard.instantiateViewControllerWithIdentifier("exitViewController") as ExitViewController
-        exitVC.parentPageViewController = self
-
-        pages.append(introVC)
+        
+        let forthVC = storyboard.instantiateViewControllerWithIdentifier("stepViewController") as StepViewController
+        forthVC.parentPageViewController = self
+        
+        let fifthVC = storyboard.instantiateViewControllerWithIdentifier("stepViewController") as StepViewController
+        fifthVC.parentPageViewController = self
+        
+        firstVC.stepTitle = NSLocalizedString("Welcome to Workapp", comment: "Welcome to Workapp")
+        firstVC.stepSubtitle = "Be more productive!"
+        firstVC.stepImage = UIImage(named: "demo_01")
+        firstVC.stepNumber = 1
+        
+        secondVC.stepTitle = "Work & break"
+        secondVC.stepSubtitle = "Choose your tasks and start working with a simple tap. Take a break between each work time."
+        secondVC.stepImage = UIImage(named: "demo_01")
+        secondVC.stepNumber = 2
+        
+        thirdVC.stepTitle = "Configure timers"
+        thirdVC.stepSubtitle = "You can set work and break length with a one finger swipe over the timer."
+        thirdVC.stepImage = UIImage(named: "demo_03")
+        thirdVC.stepNumber = 3
+        
+        forthVC.stepTitle = "Change the app theme"
+        forthVC.stepSubtitle = "Using two finger gesture up and down you can change background color for work and break."
+        forthVC.stepImage = UIImage(named: "demo_02")
+        forthVC.stepNumber = 4
+        
+        fifthVC.stepTitle = "Start working now!"
+        fifthVC.stepSubtitle = ""
+        fifthVC.stepNumber = 5
+        
         pages.append(firstVC)
         pages.append(secondVC)
         pages.append(thirdVC)
-        pages.append(exitVC)
+        pages.append(forthVC)
+        pages.append(fifthVC)
         
-        setViewControllers([introVC], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+        setViewControllers([firstVC], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
         
         dataSource = self
     }
@@ -47,6 +76,19 @@ class DemoViewController: UIPageViewController {
 }
 
 extension DemoViewController : UIPageViewControllerDataSource {
+    
+    func nextView() {
+        
+        if (currentPage == pages.count) {
+            let userDefaults = NSUserDefaults.standardUserDefaults()
+            userDefaults.setBool(false, forKey: "showTutorial")
+            userDefaults.synchronize()
+            self.dismissViewControllerAnimated(true, completion: nil)
+        } else {
+            setViewControllers([pages[currentPage]], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+        }
+        
+    }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         
@@ -59,7 +101,7 @@ extension DemoViewController : UIPageViewControllerDataSource {
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-
+        
         if (currentPage > 1) {
             return pages[currentPage-2]
         } else {
@@ -68,9 +110,12 @@ extension DemoViewController : UIPageViewControllerDataSource {
         
     }
     
-    func navigateTo(page : Int) {
-        let toVC = pages[page]
-        setViewControllers([toVC], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+        return pages.count
+    }
+    
+    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+        return (currentPage - 1)
     }
     
 }
