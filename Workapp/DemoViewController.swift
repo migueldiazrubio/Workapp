@@ -38,27 +38,27 @@ class DemoViewController: UIPageViewController {
         let fifthVC = storyboard.instantiateViewControllerWithIdentifier("stepViewController") as StepViewController
         fifthVC.parentPageViewController = self
         
-        firstVC.stepTitle = NSLocalizedString("Welcome to Workapp", comment: "Welcome to Workapp")
-        firstVC.stepSubtitle = "Be more productive!"
+        firstVC.stepTitle = NSLocalizedString("step_1_title", comment: "")
+        firstVC.stepSubtitle = NSLocalizedString("step_1_subtitle", comment: "")
         firstVC.stepImage = UIImage(named: "demo_01")
         firstVC.stepNumber = 1
         
-        secondVC.stepTitle = "Work & break"
-        secondVC.stepSubtitle = "Choose your tasks and start working with a simple tap. Take a break between each work time."
+        secondVC.stepTitle = NSLocalizedString("step_2_title", comment: "")
+        secondVC.stepSubtitle = NSLocalizedString("step_2_subtitle", comment: "")
         secondVC.stepImage = UIImage(named: "demo_01")
         secondVC.stepNumber = 2
         
-        thirdVC.stepTitle = "Configure timers"
-        thirdVC.stepSubtitle = "You can set work and break length with a one finger swipe over the timer."
+        thirdVC.stepTitle = NSLocalizedString("step_3_title", comment: "")
+        thirdVC.stepSubtitle = NSLocalizedString("step_3_subtitle", comment: "")
         thirdVC.stepImage = UIImage(named: "demo_03")
         thirdVC.stepNumber = 3
         
-        forthVC.stepTitle = "Change the app theme"
-        forthVC.stepSubtitle = "Using two finger gesture up and down you can change background color for work and break."
+        forthVC.stepTitle = NSLocalizedString("step_4_title", comment: "")
+        forthVC.stepSubtitle = NSLocalizedString("step_4_subtitle", comment: "")
         forthVC.stepImage = UIImage(named: "demo_02")
         forthVC.stepNumber = 4
         
-        fifthVC.stepTitle = "Start working now!"
+        fifthVC.stepTitle = NSLocalizedString("step_5_title", comment: "")
         fifthVC.stepSubtitle = ""
         fifthVC.stepNumber = 5
         

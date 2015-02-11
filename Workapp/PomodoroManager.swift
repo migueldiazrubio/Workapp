@@ -152,14 +152,14 @@ class PomodoroManager {
         // Creamos las acciones para las notificaciones
         var breakAction = UIMutableUserNotificationAction()
         breakAction.identifier = "BREAK_ACTION"
-        breakAction.title = "Break"
+        breakAction.title = NSLocalizedString("breakAction", comment: "")
         breakAction.activationMode = UIUserNotificationActivationMode.Background
         breakAction.destructive = false
         breakAction.authenticationRequired = false
         
         var pomodoroAction = UIMutableUserNotificationAction()
         pomodoroAction.identifier = "POMODORO_ACTION"
-        pomodoroAction.title = "Pomodoro"
+        pomodoroAction.title = NSLocalizedString("pomodoroAction", comment: "")
         pomodoroAction.activationMode = UIUserNotificationActivationMode.Background
         pomodoroAction.destructive = false
         pomodoroAction.authenticationRequired = false
@@ -191,10 +191,10 @@ class PomodoroManager {
         notification.category = "POMODORO_CATEGORY"
         
         if (breakTime) {
-            notification.alertBody = "Break just finished!"
+            notification.alertBody = NSLocalizedString("breakBody", comment: "")
             notification.userInfo = ["type": "break"]
         } else {
-            notification.alertBody = "Pomodoro just finished!"
+            notification.alertBody = NSLocalizedString("pomodoroBody", comment: "")
             notification.userInfo = ["type": "pomodoro"]
         }
         

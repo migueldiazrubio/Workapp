@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  Workapp
+
+  Created by migueldiazrubio on 11/2/15.
+  Copyright (c) 2015 Miguel Díaz Rubio. All rights reserved.
+*/
+
+"step_1_title" = "Bienvenido a Workapp";
+"step_1_subtitle" = "¡Empieza a ser mas productivo!";
+"step_2_title" = "Work & break";
+"step_2_subtitle" = "Elige una tarea y comienza a trabajar con un simple tap. Descansa brevemente entre cada sesión de trabajo.";
+"step_3_title" = "Configura la duración";
+"step_3_subtitle" = "Puedes configurar la duración de las sesiones de trabajo y descanso con un simple swipe sobre el temporizador.";
+"step_4_title" = "Modifica la apariencia";
+"step_4_subtitle" = "Utilizando un gesto arriba y abajo con dos dedos puedes configurar el color de fondo para las sesiones de trabajo o descanso.";
+"step_5_title" = "¡Comienza a trabajar ya!";
+
+"breakAction" = "Descansar";
+"pomodoroAction" = "Trabajar";
+"breakBody" = "¡El descanso ha finalizado!";
+"pomodoroBody" = "¡El trabajo ha finalizado!";

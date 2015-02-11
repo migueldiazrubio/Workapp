@@ -164,7 +164,7 @@ class ViewController: UIViewController {
             showTutorial = true
         }
         
-        if (showTutorial! || true) {
+        if (showTutorial!) {
             // Lanzamos la demo
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let demoVC = storyboard.instantiateViewControllerWithIdentifier("demoViewController") as DemoViewController
