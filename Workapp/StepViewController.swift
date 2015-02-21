@@ -9,6 +9,10 @@
 import UIKit
 
 class StepViewController: UIViewController {
+
+    @IBOutlet var titleConstraint : NSLayoutConstraint!
+    @IBOutlet var descriptionContraint : NSLayoutConstraint!
+    @IBOutlet var imageConstraint : NSLayoutConstraint!
     
     var stepTitle : String?
     var stepSubtitle : String?
@@ -38,15 +42,60 @@ class StepViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: Selector("nextView:"))
         self.view.addGestureRecognizer(tapGesture)
         
+        self.titleLabel.alpha = 0.0
+        self.imageView.alpha = 0.0
+        self.subtitleLabel.alpha = 0.0
+
     }
     
-    func nextView(gesture: UITapGestureRecognizer) {
-        parentPageViewController.nextView()
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.titleLabel.alpha = 0.0
+        self.imageView.alpha = 0.0
+        self.subtitleLabel.alpha = 0.0
+        
+        if (stepNumber == 1 || stepNumber == 3) {
+            self.titleConstraint.constant -= self.view.bounds.size.width
+            self.descriptionContraint.constant += self.view.bounds.size.width
+            self.imageConstraint.constant -= self.view.bounds.size.width
+        } else {
+            self.titleConstraint.constant += self.view.bounds.size.width
+            self.descriptionContraint.constant -= self.view.bounds.size.width
+            self.imageConstraint.constant += self.view.bounds.size.width
+        }
+        
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         parentPageViewController.currentPage = stepNumber!
+        
+        println(stepNumber)
+        UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.2, options: nil, animations: { () -> Void in
+
+            self.titleLabel.alpha = 1.0
+            self.subtitleLabel.alpha = 1.0
+            self.imageView.alpha = 1.0
+
+            if (self.stepNumber == 1 || self.stepNumber == 3) {
+                self.titleConstraint.constant += self.view.bounds.size.width
+                self.descriptionContraint.constant -= self.view.bounds.size.width
+                self.imageConstraint.constant += self.view.bounds.size.width
+            } else {
+                self.titleConstraint.constant -= self.view.bounds.size.width
+                self.descriptionContraint.constant += self.view.bounds.size.width
+                self.imageConstraint.constant -= self.view.bounds.size.width
+            }
+
+            self.view.layoutIfNeeded()
+            
+        }, completion: nil)
+        
+    }
+    
+    func nextView(gesture: UITapGestureRecognizer) {
+        parentPageViewController.nextView()
     }
     
     // Forzamos la orientación en vertical para el tutorial

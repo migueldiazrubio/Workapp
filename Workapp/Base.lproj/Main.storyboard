@@ -109,7 +109,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Workapp" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvZ-Y9-xlu">
-                                <rect key="frame" x="16" y="240" width="552" height="120"/>
+                                <rect key="frame" x="32" y="240" width="536" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="153" id="BLD-be-0sd"/>
                                     <constraint firstAttribute="height" constant="120" id="apM-3F-GGo"/>
@@ -131,7 +131,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Workapp" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baP-Pw-gJN">
-                                <rect key="frame" x="32" y="329" width="544" height="128.5"/>
+                                <rect key="frame" x="32" y="350" width="536" height="128.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="153" id="D5l-cg-lza"/>
                                     <constraint firstAttribute="height" constant="128" id="Hz6-9H-if2"/>
@@ -148,19 +148,22 @@
                         </subviews>
                         <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="KvZ-Y9-xlu" firstAttribute="leading" secondItem="pUS-0e-Wln" secondAttribute="leading" constant="16" id="Epw-Ft-CLV"/>
+                            <constraint firstItem="KvZ-Y9-xlu" firstAttribute="leading" secondItem="pUS-0e-Wln" secondAttribute="leading" constant="32" id="Epw-Ft-CLV"/>
                             <constraint firstItem="baP-Pw-gJN" firstAttribute="leading" secondItem="pUS-0e-Wln" secondAttribute="leading" constant="32" id="HC9-zz-72m"/>
                             <constraint firstItem="KvZ-Y9-xlu" firstAttribute="top" secondItem="TOS-IP-M6E" secondAttribute="bottom" constant="-11" id="KuK-Um-i5y"/>
                             <constraint firstAttribute="centerY" secondItem="KvZ-Y9-xlu" secondAttribute="centerY" id="MAQ-ha-d4Q"/>
                             <constraint firstAttribute="centerX" secondItem="TOS-IP-M6E" secondAttribute="centerX" id="YcU-Je-nKT"/>
-                            <constraint firstItem="baP-Pw-gJN" firstAttribute="top" secondItem="KvZ-Y9-xlu" secondAttribute="bottom" constant="-31" id="aJF-kZ-K3g"/>
+                            <constraint firstItem="baP-Pw-gJN" firstAttribute="top" secondItem="KvZ-Y9-xlu" secondAttribute="bottom" constant="-10" id="aJF-kZ-K3g"/>
                             <constraint firstAttribute="trailing" secondItem="KvZ-Y9-xlu" secondAttribute="trailing" constant="32" id="hUj-dV-cyE"/>
-                            <constraint firstAttribute="trailing" secondItem="baP-Pw-gJN" secondAttribute="trailing" constant="24" id="wdb-sx-Q4k"/>
+                            <constraint firstAttribute="trailing" secondItem="baP-Pw-gJN" secondAttribute="trailing" constant="32" id="wdb-sx-Q4k"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="descriptionContraint" destination="HC9-zz-72m" id="Dqi-gN-3UN"/>
+                        <outlet property="imageConstraint" destination="YcU-Je-nKT" id="xuB-1l-gYC"/>
                         <outlet property="imageView" destination="TOS-IP-M6E" id="VdN-Uz-fc0"/>
                         <outlet property="subtitleLabel" destination="baP-Pw-gJN" id="fXS-lV-Htr"/>
+                        <outlet property="titleConstraint" destination="Epw-Ft-CLV" id="ib9-Fo-W5S"/>
                         <outlet property="titleLabel" destination="KvZ-Y9-xlu" id="nwD-Wf-UDv"/>
                     </connections>
                 </viewController>

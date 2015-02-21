@@ -14,7 +14,7 @@
 "step_3_subtitle" = "Puedes configurar la duración de las sesiones de trabajo y descanso con un simple swipe sobre el temporizador.";
 "step_4_title" = "Modifica la apariencia";
 "step_4_subtitle" = "Utilizando un gesto arriba y abajo con dos dedos puedes configurar el color de fondo para las sesiones de trabajo o descanso.";
-"step_5_title" = "¡Comienza a trabajar ya!";
+"step_5_title" = "¡Comienza a trabajar!";
 
 "breakAction" = "Descansar";
 "pomodoroAction" = "Trabajar";
