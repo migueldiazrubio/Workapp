@@ -47,6 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillEnterForeground(application: UIApplication) {
         loadData()
+        let vc = self.window?.rootViewController as ViewController
+        vc.openDemoTutorial()
     }
     
     // Save and restore methods

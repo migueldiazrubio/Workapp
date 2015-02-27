@@ -51,6 +51,8 @@ class StepViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        println("viewWillAppear")
+        
         self.titleLabel.alpha = 0.0
         self.imageView.alpha = 0.0
         self.subtitleLabel.alpha = 0.0
@@ -68,29 +70,29 @@ class StepViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
+
         super.viewDidAppear(animated)
+        
+        println("viewDidAppear")
+        
         parentPageViewController.currentPage = stepNumber!
         
-        println(stepNumber)
         UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.2, options: nil, animations: { () -> Void in
 
             self.titleLabel.alpha = 1.0
             self.subtitleLabel.alpha = 1.0
             self.imageView.alpha = 1.0
-
-            if (self.stepNumber == 1 || self.stepNumber == 3) {
-                self.titleConstraint.constant += self.view.bounds.size.width
-                self.descriptionContraint.constant -= self.view.bounds.size.width
-                self.imageConstraint.constant += self.view.bounds.size.width
-            } else {
-                self.titleConstraint.constant -= self.view.bounds.size.width
-                self.descriptionContraint.constant += self.view.bounds.size.width
-                self.imageConstraint.constant -= self.view.bounds.size.width
-            }
-
+            
+            self.titleConstraint.constant = 0
+            self.descriptionContraint.constant = 0
+            self.imageConstraint.constant = 0
+            
             self.view.layoutIfNeeded()
             
-        }, completion: nil)
+            }, completion: {
+                (Bool) -> Void in
+                
+        })
         
     }
     

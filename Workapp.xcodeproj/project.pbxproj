@@ -12,6 +12,7 @@
 		2735CBFC1A7ED53700F16628 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2735CBFB1A7ED53700F16628 /* Settings.bundle */; };
 		274001E51A7CC05000EAE48B /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274001E41A7CC05000EAE48B /* DemoViewController.swift */; };
 		2748EE6E1A75885F0081AF53 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2748EE6D1A75885F0081AF53 /* AVFoundation.framework */; };
+		276E80701AA0F9D60000210F /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 276E806F1AA0F9D60000210F /* Launch Screen.xib */; };
 		277DBCE61A6319C900087E0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277DBCE51A6319C900087E0C /* AppDelegate.swift */; };
 		277DBCE81A6319C900087E0C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277DBCE71A6319C900087E0C /* ViewController.swift */; };
 		277DBCEB1A6319C900087E0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 277DBCE91A6319C900087E0C /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 		2735CBFB1A7ED53700F16628 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		274001E41A7CC05000EAE48B /* DemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
 		2748EE6D1A75885F0081AF53 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		276E806F1AA0F9D60000210F /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		277DBCE01A6319C900087E0C /* Workapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Workapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		277DBCE41A6319C900087E0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		277DBCE51A6319C900087E0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				274001E41A7CC05000EAE48B /* DemoViewController.swift */,
 				27A4F25F1A895B5000B3CDFE /* StepViewController.swift */,
 				277DBCE91A6319C900087E0C /* Main.storyboard */,
+				276E806F1AA0F9D60000210F /* Launch Screen.xib */,
 				277DBCEC1A6319C900087E0C /* Images.xcassets */,
 				272FF47D1A8BFD7E00749B6D /* Localizable.strings */,
 				277DBCE31A6319C900087E0C /* Supporting Files */,
@@ -251,6 +254,7 @@
 				2735CBFC1A7ED53700F16628 /* Settings.bundle in Resources */,
 				27C5AD131A8D542400CC5140 /* workapp.mp3 in Resources */,
 				277DBCED1A6319C900087E0C /* Images.xcassets in Resources */,
+				276E80701AA0F9D60000210F /* Launch Screen.xib in Resources */,
 				270F93121A7A119D008E1210 /* MiguelToPalote.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

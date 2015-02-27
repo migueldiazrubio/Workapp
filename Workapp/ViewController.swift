@@ -173,6 +173,11 @@ class ViewController: UIViewController {
         
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        openDemoTutorial()
+     }
+    
     override func viewWillAppear(animated: Bool) {
         
         clockLabel.hidden = true
@@ -232,9 +237,7 @@ class ViewController: UIViewController {
     }
     
     func appActive(notification : NSNotification) {
-        
-        openDemoTutorial()
-        
+                
         // TODO: Aqui habría que recuperar de disco el fireDate
         // y actualizar el contador en consecuencia
         if (pomodoroManager.breakTime) {
@@ -448,6 +451,10 @@ class ViewController: UIViewController {
             
         }
         
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
     
 }

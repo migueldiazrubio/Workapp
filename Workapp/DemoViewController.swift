@@ -17,6 +17,7 @@ class DemoViewController: UIPageViewController {
         super.viewDidLoad()
         
         UIPageControl.appearance().backgroundColor = UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 1.0)
+        
         self.view.backgroundColor = UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 1.0)
         
         // Configuramos el DEMO
@@ -68,7 +69,36 @@ class DemoViewController: UIPageViewController {
         pages.append(forthVC)
         pages.append(fifthVC)
         
-        setViewControllers([firstVC], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+        setViewControllers([firstVC], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: { (Bool) -> Void in
+            
+
+            firstVC.titleLabel.alpha = 0.0
+            firstVC.imageView.alpha = 0.0
+            firstVC.subtitleLabel.alpha = 0.0
+            
+            firstVC.titleConstraint.constant -= self.view.bounds.size.width
+            firstVC.descriptionContraint.constant += self.view.bounds.size.width
+            firstVC.imageConstraint.constant -= self.view.bounds.size.width
+
+            UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.2, options: nil, animations: { () -> Void in
+                
+                firstVC.titleLabel.alpha = 1.0
+                firstVC.subtitleLabel.alpha = 1.0
+                firstVC.imageView.alpha = 1.0
+                
+                firstVC.titleConstraint.constant = 0
+                firstVC.descriptionContraint.constant = 0
+                firstVC.imageConstraint.constant = 0
+                
+                firstVC.view.layoutIfNeeded()
+                
+                }, completion: {
+                    (Bool) -> Void in
+                    
+            })
+            
+        })
+        
         
         dataSource = self
     }
@@ -78,14 +108,16 @@ class DemoViewController: UIPageViewController {
 extension DemoViewController : UIPageViewControllerDataSource {
     
     func nextView() {
-        
+
         if (currentPage == pages.count) {
             let userDefaults = NSUserDefaults.standardUserDefaults()
             userDefaults.setBool(false, forKey: "showTutorial")
             userDefaults.synchronize()
             self.dismissViewControllerAnimated(true, completion: nil)
         } else {
-            setViewControllers([pages[currentPage]], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+            var nextVC = pages[currentPage]
+            currentPage++
+            setViewControllers([nextVC], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
         }
         
     }
@@ -117,5 +149,18 @@ extension DemoViewController : UIPageViewControllerDataSource {
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
         return (currentPage - 1)
     }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
+    override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
+        return UIInterfaceOrientation.Portrait
+    }
+    
+    override func supportedInterfaceOrientations() -> Int {
+        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+    }
+
     
 }
