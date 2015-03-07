@@ -24,7 +24,7 @@ class DemoViewController: UIPageViewController {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let firstVC = storyboard.instantiateViewControllerWithIdentifier("stepViewController") as StepViewController
+        let firstVC = storyboard.instantiateViewControllerWithIdentifier("firstViewController") as FirstViewController
         firstVC.parentPageViewController = self
         
         let secondVC = storyboard.instantiateViewControllerWithIdentifier("stepViewController") as StepViewController
@@ -70,35 +70,7 @@ class DemoViewController: UIPageViewController {
         pages.append(fifthVC)
         
         setViewControllers([firstVC], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: { (Bool) -> Void in
-            
-
-            firstVC.titleLabel.alpha = 0.0
-            firstVC.imageView.alpha = 0.0
-            firstVC.subtitleLabel.alpha = 0.0
-            
-            firstVC.titleConstraint.constant -= self.view.bounds.size.width
-            firstVC.descriptionContraint.constant += self.view.bounds.size.width
-            firstVC.imageConstraint.constant -= self.view.bounds.size.width
-
-            UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.2, options: nil, animations: { () -> Void in
-                
-                firstVC.titleLabel.alpha = 1.0
-                firstVC.subtitleLabel.alpha = 1.0
-                firstVC.imageView.alpha = 1.0
-                
-                firstVC.titleConstraint.constant = 0
-                firstVC.descriptionContraint.constant = 0
-                firstVC.imageConstraint.constant = 0
-                
-                firstVC.view.layoutIfNeeded()
-                
-                }, completion: {
-                    (Bool) -> Void in
-                    
-            })
-            
         })
-        
         
         dataSource = self
     }
@@ -113,7 +85,10 @@ extension DemoViewController : UIPageViewControllerDataSource {
             let userDefaults = NSUserDefaults.standardUserDefaults()
             userDefaults.setBool(false, forKey: "showTutorial")
             userDefaults.synchronize()
-            self.dismissViewControllerAnimated(true, completion: nil)
+            
+            let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            appDelegate.showMainDemoViewController()
+
         } else {
             var nextVC = pages[currentPage]
             currentPage++
@@ -149,18 +124,5 @@ extension DemoViewController : UIPageViewControllerDataSource {
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
         return (currentPage - 1)
     }
-    
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
-    
-    override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
-        return UIInterfaceOrientation.Portrait
-    }
-    
-    override func supportedInterfaceOrientations() -> Int {
-        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
-    }
-
-    
+        
 }

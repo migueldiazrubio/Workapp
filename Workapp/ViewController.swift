@@ -153,31 +153,6 @@ class ViewController: UIViewController {
         
     }
     
-    func openDemoTutorial() {
-        
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        var showTutorial : Bool?
-        
-        if let flagValue = userDefaults.objectForKey("showTutorial") as? Bool {
-            showTutorial = flagValue
-        } else {
-            showTutorial = true
-        }
-        
-        if (showTutorial!) {
-            // Lanzamos la demo
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let demoVC = storyboard.instantiateViewControllerWithIdentifier("demoViewController") as DemoViewController
-            self.presentViewController(demoVC, animated: true, completion: nil)
-        }
-        
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        openDemoTutorial()
-     }
-    
     override func viewWillAppear(animated: Bool) {
         
         clockLabel.hidden = true
@@ -230,7 +205,7 @@ class ViewController: UIViewController {
         }
         
         // Setting custom font for counter
-        todayLabel.font = UIFont(name: "MiguelToPalote", size: 25)
+        todayLabel.font = UIFont(name: "MiguelToPalote-Regular", size: 25)
         
         pomodoroManager.updateBadgeIcon()
         
@@ -452,10 +427,6 @@ class ViewController: UIViewController {
         }
         
     }
-    
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
-    
+        
 }
 

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		270F93121A7A119D008E1210 /* MiguelToPalote.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 270F93111A7A119D008E1210 /* MiguelToPalote.ttf */; };
 		272FF47B1A8BFD7E00749B6D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 272FF47D1A8BFD7E00749B6D /* Localizable.strings */; };
 		2735CBFC1A7ED53700F16628 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2735CBFB1A7ED53700F16628 /* Settings.bundle */; };
 		274001E51A7CC05000EAE48B /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274001E41A7CC05000EAE48B /* DemoViewController.swift */; };
@@ -24,6 +23,8 @@
 		277DBD0D1A686D1300087E0C /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277DBD0C1A686D1300087E0C /* CoreDataStack.swift */; };
 		277DBD101A686EC800087E0C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277DBD0F1A686EC800087E0C /* CoreData.framework */; };
 		277DBD141A69C38F00087E0C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277DBD131A69C38F00087E0C /* AudioToolbox.framework */; };
+		2789DE961AA4F824009A3F21 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2789DE951AA4F824009A3F21 /* FirstViewController.swift */; };
+		2789DE981AAA04CA009A3F21 /* MiguelToPalote-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2789DE971AAA04CA009A3F21 /* MiguelToPalote-Regular.ttf */; };
 		27A4F2601A895B5000B3CDFE /* StepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A4F25F1A895B5000B3CDFE /* StepViewController.swift */; };
 		27C5AD131A8D542400CC5140 /* workapp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 27C5AD121A8D542400CC5140 /* workapp.mp3 */; };
 /* End PBXBuildFile section */
@@ -39,7 +40,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		270F93111A7A119D008E1210 /* MiguelToPalote.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MiguelToPalote.ttf; sourceTree = "<group>"; };
 		272FF47C1A8BFD7E00749B6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		272FF47E1A8BFD9800749B6D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2735CBFB1A7ED53700F16628 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -61,6 +61,8 @@
 		277DBD0C1A686D1300087E0C /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		277DBD0F1A686EC800087E0C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		277DBD131A69C38F00087E0C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		2789DE951AA4F824009A3F21 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		2789DE971AAA04CA009A3F21 /* MiguelToPalote-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MiguelToPalote-Regular.ttf"; sourceTree = "<group>"; };
 		27A4F25F1A895B5000B3CDFE /* StepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepViewController.swift; sourceTree = "<group>"; };
 		27C5AD121A8D542400CC5140 /* workapp.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = workapp.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,12 +109,12 @@
 		277DBCE21A6319C900087E0C /* Workapp */ = {
 			isa = PBXGroup;
 			children = (
+				2789DE941AA4F7E0009A3F21 /* Tutorial */,
 				277DBD0E1A686D1C00087E0C /* Model */,
 				277DBCE51A6319C900087E0C /* AppDelegate.swift */,
 				277DBD051A6864F800087E0C /* PomodoroManager.swift */,
 				277DBCE71A6319C900087E0C /* ViewController.swift */,
 				274001E41A7CC05000EAE48B /* DemoViewController.swift */,
-				27A4F25F1A895B5000B3CDFE /* StepViewController.swift */,
 				277DBCE91A6319C900087E0C /* Main.storyboard */,
 				276E806F1AA0F9D60000210F /* Launch Screen.xib */,
 				277DBCEC1A6319C900087E0C /* Images.xcassets */,
@@ -125,10 +127,10 @@
 		277DBCE31A6319C900087E0C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2789DE971AAA04CA009A3F21 /* MiguelToPalote-Regular.ttf */,
 				2735CBFB1A7ED53700F16628 /* Settings.bundle */,
 				277DBCE41A6319C900087E0C /* Info.plist */,
 				27C5AD121A8D542400CC5140 /* workapp.mp3 */,
-				270F93111A7A119D008E1210 /* MiguelToPalote.ttf */,
 				2748EE6D1A75885F0081AF53 /* AVFoundation.framework */,
 				277DBD131A69C38F00087E0C /* AudioToolbox.framework */,
 				277DBD0F1A686EC800087E0C /* CoreData.framework */,
@@ -161,6 +163,15 @@
 				277DBD071A686CC300087E0C /* Model.xcdatamodeld */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		2789DE941AA4F7E0009A3F21 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				2789DE951AA4F824009A3F21 /* FirstViewController.swift */,
+				27A4F25F1A895B5000B3CDFE /* StepViewController.swift */,
+			);
+			name = Tutorial;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,13 +260,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2789DE981AAA04CA009A3F21 /* MiguelToPalote-Regular.ttf in Resources */,
 				272FF47B1A8BFD7E00749B6D /* Localizable.strings in Resources */,
 				277DBCEB1A6319C900087E0C /* Main.storyboard in Resources */,
 				2735CBFC1A7ED53700F16628 /* Settings.bundle in Resources */,
 				27C5AD131A8D542400CC5140 /* workapp.mp3 in Resources */,
 				277DBCED1A6319C900087E0C /* Images.xcassets in Resources */,
 				276E80701AA0F9D60000210F /* Launch Screen.xib in Resources */,
-				270F93121A7A119D008E1210 /* MiguelToPalote.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2789DE961AA4F824009A3F21 /* FirstViewController.swift in Sources */,
 				277DBCE81A6319C900087E0C /* ViewController.swift in Sources */,
 				277DBCE61A6319C900087E0C /* AppDelegate.swift in Sources */,
 				277DBD061A6864F800087E0C /* PomodoroManager.swift in Sources */,

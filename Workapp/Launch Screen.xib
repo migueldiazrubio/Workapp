@@ -10,11 +10,11 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="QKC-kh-IQD">
-                    <rect key="frame" x="152" y="152" width="176" height="176"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demo_01" translatesAutoresizingMaskIntoConstraints="NO" id="QKC-kh-IQD">
+                    <rect key="frame" x="140" y="140" width="200" height="200"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="176" id="PqM-b4-w3a"/>
-                        <constraint firstAttribute="width" constant="176" id="dhk-Bo-apo"/>
+                        <constraint firstAttribute="height" constant="200" id="PqM-b4-w3a"/>
+                        <constraint firstAttribute="width" constant="200" id="dhk-Bo-apo"/>
                     </constraints>
                 </imageView>
             </subviews>
@@ -29,6 +29,6 @@
         </view>
     </objects>
     <resources>
-        <image name="clock" width="574" height="545"/>
+        <image name="demo_01" width="400" height="400"/>
     </resources>
 </document>

@@ -1,15 +1,15 @@
 //
-//  StepViewController.swift
+//  FirstViewController.swift
 //  Workapp
 //
-//  Created by migueldiazrubio on 1/2/15.
+//  Created by migueldiazrubio on 2/3/15.
 //  Copyright (c) 2015 Miguel Díaz Rubio. All rights reserved.
 //
 
 import UIKit
 
-class StepViewController: UIViewController {
-
+class FirstViewController: UIViewController {
+    
     @IBOutlet var titleConstraint : NSLayoutConstraint!
     @IBOutlet var descriptionContraint : NSLayoutConstraint!
     @IBOutlet var imageConstraint : NSLayoutConstraint!
@@ -19,6 +19,8 @@ class StepViewController: UIViewController {
     var stepImage : UIImage?
     
     var stepNumber : Int?
+    
+    var animate : Bool = true
     
     var parentPageViewController : DemoViewController!
     
@@ -40,65 +42,61 @@ class StepViewController: UIViewController {
         }
         
         let tapGesture = UITapGestureRecognizer(target: self, action: Selector("nextView:"))
+        
         self.view.addGestureRecognizer(tapGesture)
         
-        self.titleLabel.alpha = 0.0
-        self.imageView.alpha = 0.0
-        self.subtitleLabel.alpha = 0.0
-
-        self.view.layoutIfNeeded()
-
+        if (self.animate) {
+            self.titleLabel.alpha = 0.0
+            self.subtitleLabel.alpha = 0.0
+            self.view.layoutIfNeeded()
+        }
+        
     }
     
     override func viewWillAppear(animated: Bool) {
+
         super.viewWillAppear(animated)
         
-        self.titleLabel.alpha = 0.0
-        self.imageView.alpha = 0.0
-        self.subtitleLabel.alpha = 0.0
-        
-        if (stepNumber != 5) {
-            if (stepNumber == 1 || stepNumber == 3) {
-                self.titleConstraint.constant -= self.view.bounds.size.width
-                self.descriptionContraint.constant += self.view.bounds.size.width
-                self.imageConstraint.constant -= self.view.bounds.size.width
-            } else {
-                self.titleConstraint.constant += self.view.bounds.size.width
-                self.descriptionContraint.constant -= self.view.bounds.size.width
-                self.imageConstraint.constant += self.view.bounds.size.width
-            }
+        if (self.animate) {
+            self.titleLabel.alpha = 0.0
+            self.subtitleLabel.alpha = 0.0
+            self.imageConstraint.constant = -160
+            self.view.layoutIfNeeded()
         }
-
-        self.view.layoutIfNeeded()
         
     }
     
     override func viewDidAppear(animated: Bool) {
-
+        
         super.viewDidAppear(animated)
         
         parentPageViewController.currentPage = stepNumber!
-        
-        var duration = 0.5
-
-        UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.2, options: nil, animations: { () -> Void in
-
-            self.titleLabel.alpha = 1.0
-            self.subtitleLabel.alpha = 1.0
-            self.imageView.alpha = 1.0
+    
+        if (self.animate) {
             
-            if (self.stepNumber != 5) {
-                self.titleConstraint.constant = 0
-                self.descriptionContraint.constant = 0
-                self.imageConstraint.constant = 0
-            }
-            
-            self.view.layoutIfNeeded()
-            
-            }, completion: {
-                (Bool) -> Void in
+            UIView.animateWithDuration(2.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
                 
-        })
+                self.imageConstraint.constant = 0
+                
+                self.view.layoutIfNeeded()
+                
+                
+            }, completion: { (Bool) -> Void in
+
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    
+                    self.titleLabel.alpha = 1.0
+                    self.subtitleLabel.alpha = 1.0
+                    
+                    self.view.layoutIfNeeded()
+                    
+                    self.animate = false
+                    
+                    }, completion: nil)
+            
+            })
+            
+        }
         
     }
     
