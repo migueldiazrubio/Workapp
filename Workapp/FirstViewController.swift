@@ -60,7 +60,7 @@ class FirstViewController: UIViewController {
         if (self.animate) {
             self.titleLabel.alpha = 0.0
             self.subtitleLabel.alpha = 0.0
-            self.imageConstraint.constant = -160
+            self.imageConstraint.constant = -170
             self.view.layoutIfNeeded()
         }
         
@@ -103,13 +103,5 @@ class FirstViewController: UIViewController {
     func nextView(gesture: UITapGestureRecognizer) {
         parentPageViewController.nextView()
     }
-    
-    override func supportedInterfaceOrientations() -> Int {
-        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
-    }
-    
-    override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
-        return UIInterfaceOrientation.Portrait
-    }
-    
+        
 }

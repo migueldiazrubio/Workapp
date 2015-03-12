@@ -21,12 +21,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.None)
         
-        showMainDemoViewController()
+        showDemoViewController()
         
         return true
     }
     
-    func showMainDemoViewController() {
+    func showMainViewController() {
+
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainVC = storyboard.instantiateViewControllerWithIdentifier("viewController") as ViewController
+        
+        self.window?.rootViewController = mainVC
+        
+    }
+    
+    func showDemoViewController() {
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
         var showTutorial : Bool?
@@ -38,20 +47,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         if (showTutorial!) {
-            // Lanzamos la demo
-            
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let demoVC = storyboard.instantiateViewControllerWithIdentifier("demoViewController") as DemoViewController
-
+            
             self.window?.rootViewController = demoVC
-            
-        } else {
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let mainVC = storyboard.instantiateViewControllerWithIdentifier("viewController") as ViewController
-
-            self.window?.rootViewController = mainVC
-
         }
         
     }
@@ -79,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillEnterForeground(application: UIApplication) {
         loadData()
-        showMainDemoViewController()
+        showDemoViewController()
     }
     
     // Save and restore methods

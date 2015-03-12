@@ -83,8 +83,6 @@ class PomodoroManager {
         
         let fetchedResults = managedObjectContext.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]?
         
-        return 2
-        
         if let results = fetchedResults {
             return results.count
         } else {
@@ -104,7 +102,6 @@ class PomodoroManager {
         if (notificationsArray.count > 0) {
             
             let notification : UILocalNotification = notificationsArray.first as UILocalNotification
-            
             
             // Calculamos los segundos que quedan para que se dispare
             if let notificationRemainSeconds = notification.fireDate?.timeIntervalSinceNow {

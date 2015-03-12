@@ -70,7 +70,7 @@ class ViewController: UIViewController {
         var retorno = ""
         
         for (var i = 0 ; i < full ; i++) {
-            retorno += "5"
+            retorno += "5 "
         }
         if (resto != 0) {
             retorno += String(resto)
@@ -212,7 +212,7 @@ class ViewController: UIViewController {
     }
     
     func appActive(notification : NSNotification) {
-                
+        
         // TODO: Aqui habría que recuperar de disco el fireDate
         // y actualizar el contador en consecuencia
         if (pomodoroManager.breakTime) {

@@ -88,8 +88,8 @@ class StepViewController: UIViewController {
             self.imageView.alpha = 1.0
             
             if (self.stepNumber != 5) {
-                self.titleConstraint.constant = 0
-                self.descriptionContraint.constant = 0
+                self.titleConstraint.constant = 32.0
+                self.descriptionContraint.constant = 32.0
                 self.imageConstraint.constant = 0
             }
             
@@ -104,14 +104,6 @@ class StepViewController: UIViewController {
     
     func nextView(gesture: UITapGestureRecognizer) {
         parentPageViewController.nextView()
-    }
-    
-    override func supportedInterfaceOrientations() -> Int {
-        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
-    }
-    
-    override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
-        return UIInterfaceOrientation.Portrait
     }
     
 }

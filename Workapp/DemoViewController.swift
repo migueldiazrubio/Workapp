@@ -87,7 +87,7 @@ extension DemoViewController : UIPageViewControllerDataSource {
             userDefaults.synchronize()
             
             let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-            appDelegate.showMainDemoViewController()
+            appDelegate.showMainViewController()
 
         } else {
             var nextVC = pages[currentPage]
@@ -124,5 +124,17 @@ extension DemoViewController : UIPageViewControllerDataSource {
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
         return (currentPage - 1)
     }
-        
+    
+    override func supportedInterfaceOrientations() -> Int {
+        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+    }
+    
+    override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
+        return UIInterfaceOrientation.Portrait
+    }
+    
+    override func shouldAutorotate() -> Bool {
+        return true
+    }
+    
 }
