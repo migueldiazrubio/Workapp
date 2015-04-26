@@ -43,7 +43,13 @@ class CoreDataStack {
     context.persistentStoreCoordinator = psc
     
     //4
-    let documentsURL = applicationDocumentsDirectory()
+    let fileManager = NSFileManager.defaultManager()
+    
+    let urls = fileManager.URLsForDirectory(.DocumentDirectory,
+        inDomains: .UserDomainMask) as! [NSURL]
+
+    let documentsURL = urls[0]
+    
     let storeURL =
     documentsURL.URLByAppendingPathComponent("Model")
     
@@ -71,14 +77,6 @@ class CoreDataStack {
     }
   }
 
-  func applicationDocumentsDirectory() -> NSURL {
-    let fileManager = NSFileManager.defaultManager()
-    
-    let urls = fileManager.URLsForDirectory(.DocumentDirectory,
-      inDomains: .UserDomainMask) as [NSURL]
-    
-    return urls[0]
-  }
   
   }
 

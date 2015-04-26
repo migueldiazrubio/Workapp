@@ -68,7 +68,7 @@ class PomodoroManager {
     // Model methods
     func todayPomodoros() -> Int {
         
-        let cal: NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
+        let cal: NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
         
         let beginTodayDate: NSDate = cal.dateBySettingHour(0, minute: 0, second: 0, ofDate: NSDate(), options: NSCalendarOptions())!
         
@@ -81,7 +81,7 @@ class PomodoroManager {
         
         var error : NSError?
         
-        let fetchedResults = managedObjectContext.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]?
+        let fetchedResults = managedObjectContext.executeFetchRequest(fetchRequest, error: &error) as! [NSManagedObject]?
         
         if let results = fetchedResults {
             return results.count
@@ -101,7 +101,7 @@ class PomodoroManager {
         
         if (notificationsArray.count > 0) {
             
-            let notification : UILocalNotification = notificationsArray.first as UILocalNotification
+            let notification : UILocalNotification = notificationsArray.first as! UILocalNotification
             
             // Calculamos los segundos que quedan para que se dispare
             if let notificationRemainSeconds = notification.fireDate?.timeIntervalSinceNow {
@@ -172,7 +172,7 @@ class PomodoroManager {
         
         let types = UIUserNotificationType.Badge | UIUserNotificationType.Sound | UIUserNotificationType.Alert
         
-        let mySettings = UIUserNotificationSettings(forTypes: types, categories: categories)
+        let mySettings = UIUserNotificationSettings(forTypes: types, categories: categories as Set)
         
         UIApplication.sharedApplication().registerUserNotificationSettings(mySettings)
         

@@ -24,19 +24,19 @@ class DemoViewController: UIPageViewController {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let firstVC = storyboard.instantiateViewControllerWithIdentifier("firstViewController") as FirstViewController
+        let firstVC = storyboard.instantiateViewControllerWithIdentifier("firstViewController") as! FirstViewController
         firstVC.parentPageViewController = self
         
-        let secondVC = storyboard.instantiateViewControllerWithIdentifier("stepViewController") as StepViewController
+        let secondVC = storyboard.instantiateViewControllerWithIdentifier("stepViewController") as! StepViewController
         secondVC.parentPageViewController = self
         
-        let thirdVC = storyboard.instantiateViewControllerWithIdentifier("stepViewController") as StepViewController
+        let thirdVC = storyboard.instantiateViewControllerWithIdentifier("stepViewController") as! StepViewController
         thirdVC.parentPageViewController = self
         
-        let forthVC = storyboard.instantiateViewControllerWithIdentifier("stepViewController") as StepViewController
+        let forthVC = storyboard.instantiateViewControllerWithIdentifier("stepViewController") as! StepViewController
         forthVC.parentPageViewController = self
         
-        let fifthVC = storyboard.instantiateViewControllerWithIdentifier("stepViewController") as StepViewController
+        let fifthVC = storyboard.instantiateViewControllerWithIdentifier("stepViewController") as! StepViewController
         fifthVC.parentPageViewController = self
         
         firstVC.stepTitle = NSLocalizedString("step_1_title", comment: "")
@@ -86,7 +86,7 @@ extension DemoViewController : UIPageViewControllerDataSource {
             userDefaults.setBool(false, forKey: "showTutorial")
             userDefaults.synchronize()
             
-            let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             appDelegate.showMainViewController()
 
         } else {

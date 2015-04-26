@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func showMainViewController() {
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainVC = storyboard.instantiateViewControllerWithIdentifier("viewController") as ViewController
+        let mainVC = storyboard.instantiateViewControllerWithIdentifier("viewController") as! ViewController
         
         self.window?.rootViewController = mainVC
         
@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if (showTutorial!) {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let demoVC = storyboard.instantiateViewControllerWithIdentifier("demoViewController") as DemoViewController
+            let demoVC = storyboard.instantiateViewControllerWithIdentifier("demoViewController") as! DemoViewController
             
             self.window?.rootViewController = demoVC
         }
@@ -102,10 +102,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
         
-        var pomodoroMins : Int? = userDefaults.objectForKey("pomodoroMinutes") as Int?
-        var breakMins : Int? = userDefaults.objectForKey("breakMinutes") as Int?
-        var pomodoroColor : Int? = userDefaults.objectForKey("pomodoroColor") as Int?
-        var breakColor : Int? = userDefaults.objectForKey("breakColor") as Int?
+        var pomodoroMins : Int? = userDefaults.objectForKey("pomodoroMinutes") as! Int?
+        var breakMins : Int? = userDefaults.objectForKey("breakMinutes") as! Int?
+        var pomodoroColor : Int? = userDefaults.objectForKey("pomodoroColor") as! Int?
+        var breakColor : Int? = userDefaults.objectForKey("breakColor") as! Int?
         
         if (pomodoroMins == nil || breakMins == nil || pomodoroColor == nil || breakColor == nil) {
             pomodoroManager.pomodoroMinutes = 25
