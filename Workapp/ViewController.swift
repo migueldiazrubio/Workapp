@@ -12,10 +12,10 @@ class ViewController: UIViewController {
     
     var colours : NSArray!
     var originalMinutes = 0
-    
     var pomodoroManager = PomodoroManager.sharedInstance
-    
     var clockTimer : NSTimer?
+    
+    // Comentario de prueba
     
     @IBOutlet weak var clockLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
