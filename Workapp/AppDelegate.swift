@@ -24,9 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.None)
         
         showDemoViewController()
-        
-        Fabric.with([Crashlytics()])
-        
+                
         return true
     }
     
