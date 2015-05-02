@@ -20,3 +20,5 @@
 "pomodoroAction" = "Pomodoro";
 "breakBody" = "Break just finished!";
 "pomodoroBody" = "Pomodoro just finished!";
+"mode_working" = "Work";
+"mode_resting" = "Rest";

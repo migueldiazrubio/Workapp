@@ -20,3 +20,6 @@
 "pomodoroAction" = "Trabajar";
 "breakBody" = "¡El descanso ha finalizado!";
 "pomodoroBody" = "¡El trabajo ha finalizado!";
+
+"mode_working" = "Trabajo";
+"mode_resting" = "Descanso";

@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     
     var gameCenterEnabled : Bool = false
     
+    @IBOutlet weak var modeLabel: UILabel!
+    
     @IBOutlet weak var clockLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var todayLabel: UILabel!
@@ -116,6 +118,8 @@ class ViewController: UIViewController {
     
     func switchToPomodoro(animation: Bool) {
         
+        modeLabel.text = NSLocalizedString("mode_working", comment: "")
+
         pomodoroManager.breakTime = false
         
         if (animation) {
@@ -136,6 +140,8 @@ class ViewController: UIViewController {
     
     func switchToBreakTime(animation: Bool) {
         
+        modeLabel.text = NSLocalizedString("mode_resting", comment: "")
+
         pomodoroManager.breakTime = true
         
         if (animation) {
@@ -405,6 +411,8 @@ class ViewController: UIViewController {
         
         if (pomodoroManager.breakTime) {
             
+            modeLabel.text = NSLocalizedString("mode_working", comment: "")
+
             pomodoroManager.breakTime = false
             
             resetTimer()
@@ -417,6 +425,8 @@ class ViewController: UIViewController {
             
         } else {
             
+            modeLabel.text = NSLocalizedString("mode_resting", comment: "")
+
             pomodoroManager.breakTime = true
             
             resetTimer()
