@@ -434,6 +434,8 @@ class ViewController: UIViewController {
     /* Game Center */
     func connectToGameKit() {
         
+        println("Connecting to Game Center...")
+        
         let localPlayer = GKLocalPlayer.localPlayer()
         
         localPlayer.authenticateHandler = {(var gameCenterVC:UIViewController!,
@@ -448,8 +450,10 @@ class ViewController: UIViewController {
                 
                 if localPlayer.authenticated {
                     self.gameCenterEnabled = true
+                    println("Game Center is active")
                 } else {
                     self.gameCenterEnabled = false
+                    println("Game Center not active")
                 }
                 
             }
@@ -458,4 +462,5 @@ class ViewController: UIViewController {
     }
         
 }
+
 
