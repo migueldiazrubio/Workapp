@@ -11,6 +11,8 @@
 		2735CBFC1A7ED53700F16628 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2735CBFB1A7ED53700F16628 /* Settings.bundle */; };
 		274001E51A7CC05000EAE48B /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274001E41A7CC05000EAE48B /* DemoViewController.swift */; };
 		2748EE6E1A75885F0081AF53 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2748EE6D1A75885F0081AF53 /* AVFoundation.framework */; };
+		27543D711AF50ED7004E46D6 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27543D6F1AF50ED7004E46D6 /* Fabric.framework */; };
+		27543D721AF50ED7004E46D6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27543D701AF50ED7004E46D6 /* Crashlytics.framework */; };
 		276E80701AA0F9D60000210F /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 276E806F1AA0F9D60000210F /* Launch Screen.xib */; };
 		277DBCE61A6319C900087E0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277DBCE51A6319C900087E0C /* AppDelegate.swift */; };
 		277DBCE81A6319C900087E0C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277DBCE71A6319C900087E0C /* ViewController.swift */; };
@@ -47,6 +49,8 @@
 		2735CBFB1A7ED53700F16628 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		274001E41A7CC05000EAE48B /* DemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
 		2748EE6D1A75885F0081AF53 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		27543D6F1AF50ED7004E46D6 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
+		27543D701AF50ED7004E46D6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		276E806F1AA0F9D60000210F /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		277DBCE01A6319C900087E0C /* Workapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Workapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		277DBCE41A6319C900087E0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -77,8 +81,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2748EE6E1A75885F0081AF53 /* AVFoundation.framework in Frameworks */,
+				27543D711AF50ED7004E46D6 /* Fabric.framework in Frameworks */,
 				277DBD141A69C38F00087E0C /* AudioToolbox.framework in Frameworks */,
 				277DBD101A686EC800087E0C /* CoreData.framework in Frameworks */,
+				27543D721AF50ED7004E46D6 /* Crashlytics.framework in Frameworks */,
 				27B01B091AF4FE6F00068C6F /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,6 +143,8 @@
 				2735CBFB1A7ED53700F16628 /* Settings.bundle */,
 				277DBCE41A6319C900087E0C /* Info.plist */,
 				27C5AD121A8D542400CC5140 /* workapp.mp3 */,
+				27543D6F1AF50ED7004E46D6 /* Fabric.framework */,
+				27543D701AF50ED7004E46D6 /* Crashlytics.framework */,
 				27B01B081AF4FE6F00068C6F /* GameKit.framework */,
 				2748EE6D1A75885F0081AF53 /* AVFoundation.framework */,
 				277DBD131A69C38F00087E0C /* AudioToolbox.framework */,
@@ -191,6 +199,7 @@
 				277DBCDC1A6319C900087E0C /* Sources */,
 				277DBCDD1A6319C900087E0C /* Frameworks */,
 				277DBCDE1A6319C900087E0C /* Resources */,
+				27543D6E1AF50EAD004E46D6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -290,6 +299,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		27543D6E1AF50EAD004E46D6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run e4ea71a11b1f2d161fc86c0c0543a401fe2b4451 7e104aa164fbd88d2b3b90d918476f9a5950c8c61f130e637f4a63ff6e4ddb44";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		277DBCDC1A6319C900087E0C /* Sources */ = {
@@ -432,6 +457,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Workapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -446,6 +475,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Workapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
