@@ -31,21 +31,12 @@ class ViewController: UIViewController {
             resetTimer()
             pomodoroManager.stop()
             pomodoroManager.counting = false
-
-            self.modeLabel.hidden = true
-            
             
         } else {
             
             pomodoroManager.start()
             pomodoroManager.timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("updateTimer:"), userInfo: nil, repeats: true)
             pomodoroManager.counting = true
-            
-            let orientation : UIInterfaceOrientation = UIApplication.sharedApplication().statusBarOrientation
-            if(UIInterfaceOrientationIsPortrait(orientation))
-            {
-                self.modeLabel.hidden = false
-            }
 
         }
         
@@ -231,8 +222,7 @@ class ViewController: UIViewController {
         pomodoroManager.updateBadgeIcon()
         
         connectToGameKit()
-        
-        self.modeLabel.hidden = true
+
         modeLabel.text = NSLocalizedString("mode_working", comment: "")
         
     }
@@ -254,8 +244,6 @@ class ViewController: UIViewController {
             // Si el cronometro tiene el contador activado
             if (pomodoroManager.counting) {
                 
-                self.modeLabel.hidden = false
-                
                 // Ha llegado la notificación pero se ha
                 // abierto la app sin utilizarla. Contabilizamos
                 // el pomodoro o break según corresponda
@@ -268,8 +256,6 @@ class ViewController: UIViewController {
                     switchToBreakTime(true)
                 }
             } else {
-                
-                self.modeLabel.hidden = true
                 
                 // Si el cronometro estaba parado
                 resetTimer()
@@ -499,9 +485,7 @@ class ViewController: UIViewController {
         {
             self.clockLabel.hidden = false
             self.todayLabel.hidden = false
-            if (pomodoroManager.counting) {
-                self.modeLabel.hidden = false
-            }
+            self.modeLabel.hidden = false
         }
     }
     
