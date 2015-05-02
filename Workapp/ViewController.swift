@@ -37,7 +37,7 @@ class ViewController: UIViewController {
             pomodoroManager.counting = true
             
         }
-        
+                
     }
     
     func resetTimer() {

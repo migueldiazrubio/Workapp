@@ -26,8 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         showDemoViewController()
         
         Fabric.with([Crashlytics()])
-
-        Crashlytics.sharedInstance().crash()
         
         return true
     }
