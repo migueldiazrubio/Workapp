@@ -232,6 +232,9 @@ class ViewController: UIViewController {
         
         connectToGameKit()
         
+        self.modeLabel.hidden = true
+        modeLabel.text = NSLocalizedString("mode_working", comment: "")
+        
     }
     
     func appActive(notification : NSNotification) {
@@ -486,14 +489,13 @@ class ViewController: UIViewController {
     }
     
     func showHideControls() {
-        let orientation : UIInterfaceOrientation = UIApplication.sharedApplication().statusBarOrientation
-        if(UIInterfaceOrientationIsLandscape(orientation))
+        if(UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation))
         {
             self.clockLabel.hidden = true
             self.modeLabel.hidden = true
             self.todayLabel.hidden = true
         }
-        if(UIInterfaceOrientationIsPortrait(orientation))
+        if(UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation))
         {
             self.clockLabel.hidden = false
             self.todayLabel.hidden = false
