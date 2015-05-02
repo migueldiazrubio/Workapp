@@ -26,6 +26,7 @@
 		2789DE961AA4F824009A3F21 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2789DE951AA4F824009A3F21 /* FirstViewController.swift */; };
 		2789DE981AAA04CA009A3F21 /* MiguelToPalote-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2789DE971AAA04CA009A3F21 /* MiguelToPalote-Regular.ttf */; };
 		27A4F2601A895B5000B3CDFE /* StepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A4F25F1A895B5000B3CDFE /* StepViewController.swift */; };
+		27B01B091AF4FE6F00068C6F /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B01B081AF4FE6F00068C6F /* GameKit.framework */; };
 		27C5AD131A8D542400CC5140 /* workapp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 27C5AD121A8D542400CC5140 /* workapp.mp3 */; };
 		27E2E4021AE42BC3000AA5FB /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27E2E4011AE42BC3000AA5FB /* Media.xcassets */; };
 /* End PBXBuildFile section */
@@ -65,6 +66,7 @@
 		2789DE951AA4F824009A3F21 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		2789DE971AAA04CA009A3F21 /* MiguelToPalote-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MiguelToPalote-Regular.ttf"; sourceTree = "<group>"; };
 		27A4F25F1A895B5000B3CDFE /* StepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepViewController.swift; sourceTree = "<group>"; };
+		27B01B081AF4FE6F00068C6F /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		27C5AD121A8D542400CC5140 /* workapp.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = workapp.mp3; sourceTree = "<group>"; };
 		27E2E4011AE42BC3000AA5FB /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,6 +79,7 @@
 				2748EE6E1A75885F0081AF53 /* AVFoundation.framework in Frameworks */,
 				277DBD141A69C38F00087E0C /* AudioToolbox.framework in Frameworks */,
 				277DBD101A686EC800087E0C /* CoreData.framework in Frameworks */,
+				27B01B091AF4FE6F00068C6F /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +133,7 @@
 		277DBCE31A6319C900087E0C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				27B01B081AF4FE6F00068C6F /* GameKit.framework */,
 				2789DE971AAA04CA009A3F21 /* MiguelToPalote-Regular.ttf */,
 				2735CBFB1A7ED53700F16628 /* Settings.bundle */,
 				277DBCE41A6319C900087E0C /* Info.plist */,
@@ -226,9 +230,13 @@
 				TargetAttributes = {
 					277DBCDF1A6319C900087E0C = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = CKJPC95UYE;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
+							};
+							com.apple.GameCenter = {
+								enabled = 1;
 							};
 						};
 					};
@@ -422,10 +430,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Workapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -433,10 +444,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Workapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

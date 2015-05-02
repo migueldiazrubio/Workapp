@@ -15,8 +15,6 @@ class ViewController: UIViewController {
     var pomodoroManager = PomodoroManager.sharedInstance
     var clockTimer : NSTimer?
     
-    // Comentario de prueba
-    
     @IBOutlet weak var clockLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var todayLabel: UILabel!
