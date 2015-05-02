@@ -31,6 +31,9 @@ class ViewController: UIViewController {
             resetTimer()
             pomodoroManager.stop()
             pomodoroManager.counting = false
+
+            self.modeLabel.hidden = true
+            
             
         } else {
             
@@ -38,6 +41,12 @@ class ViewController: UIViewController {
             pomodoroManager.timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("updateTimer:"), userInfo: nil, repeats: true)
             pomodoroManager.counting = true
             
+            let orientation : UIInterfaceOrientation = UIApplication.sharedApplication().statusBarOrientation
+            if(UIInterfaceOrientationIsPortrait(orientation))
+            {
+                self.modeLabel.hidden = false
+            }
+
         }
         
     }
@@ -162,6 +171,7 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         
+        
         clockLabel.hidden = true
         if let timer = clockTimer {
             timer.invalidate()
@@ -172,9 +182,13 @@ class ViewController: UIViewController {
         
         updateLeaderboard()
         
+        showHideControls()
+        
     }
     
     override func viewDidLoad() {
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "rotated", name: UIDeviceOrientationDidChangeNotification, object: nil)
         
         resetTimer()
         
@@ -236,6 +250,9 @@ class ViewController: UIViewController {
         if (scheduledLocalNotifications.isEmpty) {
             // Si el cronometro tiene el contador activado
             if (pomodoroManager.counting) {
+                
+                self.modeLabel.hidden = false
+                
                 // Ha llegado la notificación pero se ha
                 // abierto la app sin utilizarla. Contabilizamos
                 // el pomodoro o break según corresponda
@@ -248,6 +265,8 @@ class ViewController: UIViewController {
                     switchToBreakTime(true)
                 }
             } else {
+                
+                self.modeLabel.hidden = true
                 
                 // Si el cronometro estaba parado
                 resetTimer()
@@ -266,6 +285,7 @@ class ViewController: UIViewController {
             
             if (pomodoroManager.counting) {
                 pomodoroManager.timer.invalidate()
+                updateTimer(pomodoroManager.timer)
                 pomodoroManager.timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("updateTimer:"), userInfo: nil, repeats: true)
             }
             
@@ -382,11 +402,7 @@ class ViewController: UIViewController {
     }
     
     func updateClock(timer: NSTimer) {
-        
-        UIView.animateWithDuration(1.0, animations: { () -> Void in
-            self.clockLabel.hidden = false
-        })
-        
+                
         let formatter = NSDateFormatter()
         formatter.dateFormat = "HH:mm"
         let now : String = formatter.stringFromDate(NSDate())
@@ -460,17 +476,38 @@ class ViewController: UIViewController {
                 
                 if localPlayer.authenticated {
                     self.gameCenterEnabled = true
-                    println("Game Center is active")
                 } else {
                     self.gameCenterEnabled = false
-                    println("Game Center not active")
                 }
                 
             }
         }
         
     }
-        
+    
+    func showHideControls() {
+        let orientation : UIInterfaceOrientation = UIApplication.sharedApplication().statusBarOrientation
+        if(UIInterfaceOrientationIsLandscape(orientation))
+        {
+            self.clockLabel.hidden = true
+            self.modeLabel.hidden = true
+            self.todayLabel.hidden = true
+        }
+        if(UIInterfaceOrientationIsPortrait(orientation))
+        {
+            self.clockLabel.hidden = false
+            self.todayLabel.hidden = false
+            if (pomodoroManager.counting) {
+                self.modeLabel.hidden = false
+            }
+        }
+    }
+    
+    func rotated()
+    {
+        showHideControls()
+    }
+    
 }
 
 

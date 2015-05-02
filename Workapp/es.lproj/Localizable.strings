@@ -18,8 +18,8 @@
 
 "breakAction" = "Descansar";
 "pomodoroAction" = "Trabajar";
-"breakBody" = "¡El descanso ha finalizado!";
-"pomodoroBody" = "¡El trabajo ha finalizado!";
+"breakBody" = "Ha finalizado tu descanso. ¿Te animas a hacer otra sesión de trabajo?";
+"pomodoroBody" = "Has finalizado otra sesión de trabajo. ¡Enhorabuena! ¿Te apetece un descanso?";
 
-"mode_working" = "Trabajo";
-"mode_resting" = "Descanso";
+"mode_working" = "Trabajando";
+"mode_resting" = "Descansando";
