@@ -133,11 +133,11 @@
 		277DBCE31A6319C900087E0C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				27B01B081AF4FE6F00068C6F /* GameKit.framework */,
 				2789DE971AAA04CA009A3F21 /* MiguelToPalote-Regular.ttf */,
 				2735CBFB1A7ED53700F16628 /* Settings.bundle */,
 				277DBCE41A6319C900087E0C /* Info.plist */,
 				27C5AD121A8D542400CC5140 /* workapp.mp3 */,
+				27B01B081AF4FE6F00068C6F /* GameKit.framework */,
 				2748EE6D1A75885F0081AF53 /* AVFoundation.framework */,
 				277DBD131A69C38F00087E0C /* AudioToolbox.framework */,
 				277DBD0F1A686EC800087E0C /* CoreData.framework */,

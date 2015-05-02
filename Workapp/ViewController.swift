@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GameKit
 
 class ViewController: UIViewController {
     
@@ -14,6 +15,8 @@ class ViewController: UIViewController {
     var originalMinutes = 0
     var pomodoroManager = PomodoroManager.sharedInstance
     var clockTimer : NSTimer?
+    
+    var gameCenterEnabled : Bool = false
     
     @IBOutlet weak var clockLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
@@ -206,6 +209,8 @@ class ViewController: UIViewController {
         todayLabel.font = UIFont(name: "MiguelToPalote-Regular", size: 25)
         
         pomodoroManager.updateBadgeIcon()
+        
+        connectToGameKit()
         
     }
     
@@ -422,6 +427,32 @@ class ViewController: UIViewController {
                 }
             })
             
+        }
+        
+    }
+    
+    /* Game Center */
+    func connectToGameKit() {
+        
+        let localPlayer = GKLocalPlayer.localPlayer()
+        
+        localPlayer.authenticateHandler = {(var gameCenterVC:UIViewController!,
+            
+            var gameCenterError:NSError!) -> Void in
+            
+            if gameCenterVC != nil {
+                
+                self.presentViewController(gameCenterVC, animated: true, completion:nil)
+                
+            } else {
+                
+                if localPlayer.authenticated {
+                    self.gameCenterEnabled = true
+                } else {
+                    self.gameCenterEnabled = false
+                }
+                
+            }
         }
         
     }
