@@ -9,7 +9,7 @@
 import UIKit
 import GameKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, GKGameCenterControllerDelegate {
     
     var colours : NSArray!
     var originalMinutes = 0
@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var clockLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
-    @IBOutlet weak var todayLabel: UILabel!
+    @IBOutlet weak var todayButton: UIButton!
     
     func startStop(gesture : UITapGestureRecognizer) {
         
@@ -60,9 +60,9 @@ class ViewController: UIViewController {
     func updateLeaderboard() {
         var todayPomodoros = pomodoroManager.todayPomodoros()
         if (todayPomodoros > 0) {
-            todayLabel.text = todayStringFromNumber(todayPomodoros)
+            todayButton.setTitle(todayStringFromNumber(todayPomodoros), forState: UIControlState.Normal)
         } else {
-            todayLabel.text = ""
+            todayButton.setTitle("", forState: UIControlState.Normal)
         }
     }
     
@@ -175,6 +175,8 @@ class ViewController: UIViewController {
         
         showHideControls()
         
+        connectToGameKit()
+        
     }
     
     override func viewDidLoad() {
@@ -216,12 +218,7 @@ class ViewController: UIViewController {
             self.view.backgroundColor = self.colours[color] as? UIColor
         }
         
-        // Setting custom font for counter
-        todayLabel.font = UIFont(name: "MiguelToPalote-Regular", size: 25)
-        
         pomodoroManager.updateBadgeIcon()
-        
-        connectToGameKit()
 
         modeLabel.text = NSLocalizedString("mode_working", comment: "")
         
@@ -447,6 +444,24 @@ class ViewController: UIViewController {
     }
     
     /* Game Center */
+    
+    @IBAction func showGameCenter(sender: AnyObject) {
+
+        var gcViewController: GKGameCenterViewController = GKGameCenterViewController()
+
+        gcViewController.gameCenterDelegate = self
+        
+//        gcViewController.viewState = GKGameCenterViewControllerState.Leaderboards
+//        gcViewController.leaderboardIdentifier = "losmasproductivos"
+        
+        self.presentViewController(gcViewController, animated: true, completion: nil)
+    
+    }
+    
+    func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!) {
+        gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     func connectToGameKit() {
         
         println("Connecting to Game Center...")
@@ -459,13 +474,17 @@ class ViewController: UIViewController {
             
             if gameCenterVC != nil {
                 
+                println("Not logged. Present login screen")
+                
                 self.presentViewController(gameCenterVC, animated: true, completion:nil)
                 
             } else {
                 
                 if localPlayer.authenticated {
+                    println("Game Center enabled")
                     self.gameCenterEnabled = true
                 } else {
+                    println("Game Center disabled")
                     self.gameCenterEnabled = false
                 }
                 
@@ -479,12 +498,12 @@ class ViewController: UIViewController {
         {
             self.clockLabel.hidden = true
             self.modeLabel.hidden = true
-            self.todayLabel.hidden = true
+            self.todayButton.hidden = true
         }
         if(UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation))
         {
             self.clockLabel.hidden = false
-            self.todayLabel.hidden = false
+            self.todayButton.hidden = false
             self.modeLabel.hidden = false
         }
     }
