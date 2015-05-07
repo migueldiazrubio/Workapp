@@ -23,3 +23,9 @@
 
 "mode_working" = "Trabajando";
 "mode_resting" = "Descansando";
+"history_label" = "Historial";
+"history_delete_today" = "Borrar datos de hoy";
+"history_delete_all" = "Borrar todos los datos";
+"history_cancel" = "Cancelar";
+
+

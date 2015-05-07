@@ -209,7 +209,7 @@ class PomodoroManager {
     func reportCurrentPomodorosGameCenter() {
         
         let score : GKScore = GKScore(leaderboardIdentifier: "losmasproductivos")
-        score.value = (Int64)(self.todayPomodoros())
+        score.value = (Int64)(self.todayTotalMinutes())
         score.context = 0
         
         GKScore.reportScores([score], withCompletionHandler: { (error) -> Void in
@@ -218,4 +218,84 @@ class PomodoroManager {
         
     }
     
+    func deleteTodayData() {
+        
+        let cal: NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        
+        let beginTodayDate: NSDate = cal.dateBySettingHour(0, minute: 0, second: 0, ofDate: NSDate(), options: NSCalendarOptions())!
+        
+        let endTodayDate: NSDate = cal.dateBySettingHour(23, minute: 59, second: 59, ofDate: NSDate(), options: NSCalendarOptions())!
+        
+        let fetchRequest = NSFetchRequest(entityName: "Pomodoro")
+        
+        let predicate = NSPredicate(format: "date >= %@ and date <= %@", beginTodayDate, endTodayDate)
+        
+        fetchRequest.predicate = predicate
+        
+        var error : NSError?
+        
+        let fetchedResults = managedObjectContext.executeFetchRequest(fetchRequest, error: &error) as! [NSManagedObject]?
+        
+        if let results = fetchedResults {
+            
+            for elem in results {
+                managedObjectContext.deleteObject(elem as NSManagedObject)
+            }
+            
+            managedObjectContext.save(nil)
+
+        } else {
+            println("Could not delete recors for Pomodoros entity")
+        }
+
+    }
+    
+    func deleteAllData() {
+
+        let fetchRequest = NSFetchRequest(entityName: "Pomodoro")
+        
+        var error : NSError?
+        
+        let fetchedResults = managedObjectContext.executeFetchRequest(fetchRequest, error: &error) as! [NSManagedObject]?
+        
+        if let results = fetchedResults {
+            
+            for elem in results {
+                managedObjectContext.deleteObject(elem as NSManagedObject)
+            }
+            managedObjectContext.save(nil)
+            
+        } else {
+            println("Could not delete recors for Pomodoros entity")
+        }
+        
+        
+    }
+    
+    func todayTotalMinutes() -> Int {
+        
+        let fetchRequest = NSFetchRequest(entityName: "Pomodoro")
+        
+        var error : NSError?
+        
+        let fetchedResults = managedObjectContext.executeFetchRequest(fetchRequest, error: &error) as! [NSManagedObject]?
+        
+        if let results = fetchedResults {
+            
+            var totalMinutes : Int = 0
+            
+            for elem in results {
+                totalMinutes += elem.valueForKey("length") as! Int
+            }
+            
+            return totalMinutes
+            
+        } else {
+            println("Could not delete recors for Pomodoros entity")
+        }
+        
+        return 0
+        
+    }
+
 }

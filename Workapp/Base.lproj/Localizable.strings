@@ -22,3 +22,7 @@
 "pomodoroBody" = "You have completed another work session.Congratulations! Fancy a break?";
 "mode_working" = "Working";
 "mode_resting" = "Resting";
+"history_label" = "History";
+"history_delete_today" = "Delete today data";
+"history_delete_all" = "Delete all data";
+"history_cancel" = "Cancel";

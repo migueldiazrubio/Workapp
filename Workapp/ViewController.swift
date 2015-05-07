@@ -18,8 +18,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
     
     var gameCenterEnabled : Bool = false
     
-    @IBOutlet weak var modeLabel: UILabel!
-    
+    @IBOutlet weak var modeButton: UIButton!
     @IBOutlet weak var clockLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var todayButton: UIButton!
@@ -118,7 +117,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
     
     func switchToPomodoro(animation: Bool) {
         
-        modeLabel.text = NSLocalizedString("mode_working", comment: "")
+        modeButton.setTitle(NSLocalizedString("mode_working", comment: ""), forState: UIControlState.Normal)
 
         pomodoroManager.breakTime = false
         
@@ -139,8 +138,8 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
     }
     
     func switchToBreakTime(animation: Bool) {
-        
-        modeLabel.text = NSLocalizedString("mode_resting", comment: "")
+
+        modeButton.setTitle(NSLocalizedString("mode_resting", comment: ""), forState: UIControlState.Normal)
 
         pomodoroManager.breakTime = true
         
@@ -220,9 +219,64 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
         
         pomodoroManager.updateBadgeIcon()
 
-        modeLabel.text = NSLocalizedString("mode_working", comment: "")
+        modeButton.setTitle(NSLocalizedString("mode_working", comment: ""), forState: UIControlState.Normal)
+        
+        // Configuramos las dos acciones del Today Button
+        let todayTapGesture = UITapGestureRecognizer(target: self, action: Selector("todayTap:"))
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: Selector("todayLongPress:"))
+        todayButton.addGestureRecognizer(todayTapGesture)
+        todayButton.addGestureRecognizer(longPressGesture)
         
     }
+    
+    func todayTap(gesture : UITapGestureRecognizer) {
+        
+        // Abrimos el Game Center
+
+        var gcViewController: GKGameCenterViewController = GKGameCenterViewController()
+        
+        gcViewController.gameCenterDelegate = self
+        
+        //        gcViewController.viewState = GKGameCenterViewControllerState.Leaderboards
+        //        gcViewController.leaderboardIdentifier = "losmasproductivos"
+        
+        self.presentViewController(gcViewController, animated: true, completion: nil)
+        
+    }
+    func todayLongPress(gesture : UILongPressGestureRecognizer) {
+        
+        // Abrimos un menu contextual para borrar el histórico de hoy o de siempre
+        // 1
+        let optionMenu = UIAlertController(title: nil, message: NSLocalizedString("history_label", comment: ""), preferredStyle: .ActionSheet)
+        
+        // 2
+        let deleteTodayAction = UIAlertAction(title: NSLocalizedString("history_delete_today", comment: ""), style: UIAlertActionStyle.Destructive, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.pomodoroManager.deleteTodayData()
+            self.updateLeaderboard()
+        })
+        
+        let deleteAlltimeAction = UIAlertAction(title: NSLocalizedString("history_delete_all", comment: ""), style: UIAlertActionStyle.Destructive, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.pomodoroManager.deleteAllData()
+            self.updateLeaderboard()
+        })
+
+        //
+        let cancelAction = UIAlertAction(title: NSLocalizedString("history_cancel", comment: ""), style: .Cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+        })
+        
+        // 4
+        optionMenu.addAction(deleteTodayAction)
+        optionMenu.addAction(deleteAlltimeAction)
+        optionMenu.addAction(cancelAction)
+        
+        // 5
+        self.presentViewController(optionMenu, animated: true, completion: nil)
+        
+    }
+    
     
     func appActive(notification : NSNotification) {
         
@@ -413,7 +467,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
         
         if (pomodoroManager.breakTime) {
             
-            modeLabel.text = NSLocalizedString("mode_working", comment: "")
+            modeButton.setTitle(NSLocalizedString("mode_working", comment: ""), forState: UIControlState.Normal)
 
             pomodoroManager.breakTime = false
             
@@ -427,7 +481,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
             
         } else {
             
-            modeLabel.text = NSLocalizedString("mode_resting", comment: "")
+            modeButton.setTitle(NSLocalizedString("mode_resting", comment: ""), forState: UIControlState.Normal)
 
             pomodoroManager.breakTime = true
             
@@ -444,19 +498,6 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
     }
     
     /* Game Center */
-    
-    @IBAction func showGameCenter(sender: AnyObject) {
-
-        var gcViewController: GKGameCenterViewController = GKGameCenterViewController()
-
-        gcViewController.gameCenterDelegate = self
-        
-//        gcViewController.viewState = GKGameCenterViewControllerState.Leaderboards
-//        gcViewController.leaderboardIdentifier = "losmasproductivos"
-        
-        self.presentViewController(gcViewController, animated: true, completion: nil)
-    
-    }
     
     func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!) {
         gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
@@ -497,15 +538,19 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
         if(UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation))
         {
             self.clockLabel.hidden = true
-            self.modeLabel.hidden = true
+            self.modeButton.hidden = true
             self.todayButton.hidden = true
         }
         if(UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation))
         {
             self.clockLabel.hidden = false
             self.todayButton.hidden = false
-            self.modeLabel.hidden = false
+            self.modeButton.hidden = false
         }
+    }
+    
+    @IBAction func modeChangePressed() {
+        switchMode()
     }
     
     func rotated()
