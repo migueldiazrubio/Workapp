@@ -274,7 +274,17 @@ class PomodoroManager {
     
     func todayTotalMinutes() -> Int {
         
+        let cal: NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        
+        let beginTodayDate: NSDate = cal.dateBySettingHour(0, minute: 0, second: 0, ofDate: NSDate(), options: NSCalendarOptions())!
+        
+        let endTodayDate: NSDate = cal.dateBySettingHour(23, minute: 59, second: 59, ofDate: NSDate(), options: NSCalendarOptions())!
+        
         let fetchRequest = NSFetchRequest(entityName: "Pomodoro")
+        
+        let predicate = NSPredicate(format: "date >= %@ and date <= %@", beginTodayDate, endTodayDate)
+        
+        fetchRequest.predicate = predicate
         
         var error : NSError?
         
@@ -291,7 +301,7 @@ class PomodoroManager {
             return totalMinutes
             
         } else {
-            println("Could not delete recors for Pomodoros entity")
+            println("Could not retrieve recors for today work minutes")
         }
         
         return 0

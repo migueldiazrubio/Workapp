@@ -18,6 +18,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
     
     var gameCenterEnabled : Bool = false
     
+    @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var modeButton: UIButton!
     @IBOutlet weak var clockLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
@@ -539,12 +540,14 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
         {
             self.clockLabel.hidden = true
             self.modeButton.hidden = true
+            self.infoButton.hidden = true
             self.todayButton.hidden = true
         }
         if(UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation))
         {
             self.clockLabel.hidden = false
             self.todayButton.hidden = false
+            self.infoButton.hidden = false
             self.modeButton.hidden = false
         }
     }
@@ -558,6 +561,15 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
         showHideControls()
     }
     
+    @IBAction func showTutorialInfoButton() {
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        userDefaults.setObject(true, forKey: "showTutorial")
+
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.showDemoViewController()
+        
+    }
 }
 
 

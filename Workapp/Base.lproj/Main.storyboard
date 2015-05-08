@@ -73,12 +73,28 @@
                                     <action selector="modeChangePressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="9zj-G7-dLs"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lxh-Rm-Kai">
+                                <rect key="frame" x="562" y="558" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="SS3-Ya-6f4"/>
+                                    <constraint firstAttribute="width" constant="22" id="gih-21-glT"/>
+                                </constraints>
+                                <color key="tintColor" red="0.99607849120000003" green="0.99215692280000001" blue="0.99215692280000001" alpha="1" colorSpace="deviceRGB"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showTutorialInfoButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q0w-6O-TvP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.90588235294117647" green="0.29803921568627451" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="4QL-8L-FJ6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="1ar-1e-mLp"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lxh-Rm-Kai" secondAttribute="bottom" constant="20" id="1nR-Kp-1oS"/>
                             <constraint firstItem="Fj3-lR-olK" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="1ux-D6-5Zu"/>
                             <constraint firstItem="4QL-8L-FJ6" firstAttribute="top" secondItem="Fj3-lR-olK" secondAttribute="bottom" constant="-5" id="7mu-Vf-Brz"/>
+                            <constraint firstAttribute="trailing" secondItem="lxh-Rm-Kai" secondAttribute="trailing" constant="16" id="DAK-aB-WEc"/>
                             <constraint firstAttribute="centerY" secondItem="Fj3-lR-olK" secondAttribute="centerY" id="GaW-1V-93s"/>
                             <constraint firstItem="Fj3-lR-olK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="Kgq-7f-jAA"/>
                             <constraint firstAttribute="centerX" secondItem="GAS-tU-lI6" secondAttribute="centerX" id="R5w-bb-MiY"/>
@@ -102,6 +118,7 @@
                     <navigationItem key="navigationItem" id="ejK-gf-inh"/>
                     <connections>
                         <outlet property="clockLabel" destination="GAS-tU-lI6" id="Ndv-f4-Oof"/>
+                        <outlet property="infoButton" destination="lxh-Rm-Kai" id="vNZ-n7-tGT"/>
                         <outlet property="modeButton" destination="4QL-8L-FJ6" id="WZR-Bz-AuJ"/>
                         <outlet property="timerLabel" destination="Fj3-lR-olK" id="rKI-Mf-UqY"/>
                         <outlet property="todayButton" destination="biJ-Rb-LAM" id="reG-O7-qEy"/>
