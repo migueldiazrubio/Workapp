@@ -67,6 +67,71 @@ class PomodoroManager {
     }
     
     // Model methods
+    func thisWeekPomodoros() -> Int {
+        
+//        let today = NSDate()
+//        let gregorian = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+//        gregorian?.locale = NSLocale.currentLocale()
+//        
+//        let nowComponents =
+//        nowComponents.weekday = 1
+//        nowComponents.hour = 0
+//        nowComponents.minute = 0
+//        nowComponents.second = 0
+//        
+//        let monday = gregorian?.dateFromComponents(nowComponents)
+//        
+//        nowComponents.weekday = 7
+//        
+//        let sunday = gregorian?.dateFromComponents(nowComponents)
+//        
+//        let beginDate = monday
+//        
+//        let endDate = sunday
+//        
+//        let fetchRequest = NSFetchRequest(entityName: "Pomodoro")
+//        
+//        let predicate = NSPredicate(format: "date >= %@ and date <= %@", beginDate, endDate)
+//        fetchRequest.predicate = predicate
+//        
+//        var error : NSError?
+//        
+//        let fetchedResults = managedObjectContext.executeFetchRequest(fetchRequest, error: &error) as! [NSManagedObject]?
+//        
+//        if let results = fetchedResults {
+//            return results.count
+//        } else {
+//            println("Could not find recors for Pomodoros entity")
+//            return 0
+//        }
+        return 0
+    }
+    
+    func lastWeekPomodoros() -> Int {
+        
+        let cal: NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        
+        let beginTodayDate: NSDate = cal.dateBySettingHour(0, minute: 0, second: 0, ofDate: NSDate(), options: NSCalendarOptions())!
+        
+        let endTodayDate: NSDate = cal.dateBySettingHour(23, minute: 59, second: 59, ofDate: NSDate(), options: NSCalendarOptions())!
+        
+        let fetchRequest = NSFetchRequest(entityName: "Pomodoro")
+        
+        let predicate = NSPredicate(format: "date >= %@ and date <= %@", beginTodayDate, endTodayDate)
+        fetchRequest.predicate = predicate
+        
+        var error : NSError?
+        
+        let fetchedResults = managedObjectContext.executeFetchRequest(fetchRequest, error: &error) as! [NSManagedObject]?
+        
+        if let results = fetchedResults {
+            return results.count
+        } else {
+            println("Could not find recors for Pomodoros entity")
+            return 0
+        }
+    }
+    
     func todayPomodoros() -> Int {
         
         let cal: NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!

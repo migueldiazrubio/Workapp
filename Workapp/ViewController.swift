@@ -11,6 +11,12 @@ import GameKit
 
 class ViewController: UIViewController, GKGameCenterControllerDelegate {
     
+    // Animation
+    var animator:UIDynamicAnimator!
+    var snapBehaviour:UISnapBehavior!
+    var tutorialBackgroundView : UIView!
+    var tutorialView : UIView!
+    
     var colours : NSArray!
     var originalMinutes = 0
     var pomodoroManager = PomodoroManager.sharedInstance
@@ -18,6 +24,10 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
     
     var gameCenterEnabled : Bool = false
     
+    var tutorial : Bool = false
+    var tutorialStep : Int = 0
+    
+    @IBOutlet weak var gameCenterButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var modeButton: UIButton!
     @IBOutlet weak var clockLabel: UILabel!
@@ -59,27 +69,30 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
     
     func updateLeaderboard() {
         var todayPomodoros = pomodoroManager.todayPomodoros()
+        
         if (todayPomodoros > 0) {
-            todayButton.setTitle(todayStringFromNumber(todayPomodoros), forState: UIControlState.Normal)
+            var label = "\(todayPomodoros) "
+
+            if (todayPomodoros == 1) {
+                label = label.stringByAppendingString(NSLocalizedString("today_session", comment: ""))
+            } else {
+                label = label.stringByAppendingString(NSLocalizedString("today_sessions", comment: ""))
+            }
+            
+            label = label.stringByAppendingString(timeElapsedString())
+            todayButton.setTitle(label, forState: UIControlState.Normal)
         } else {
-            todayButton.setTitle("", forState: UIControlState.Normal)
+            todayButton.setTitle(NSLocalizedString("today_nothing", comment: ""), forState: UIControlState.Normal)
         }
     }
     
-    func todayStringFromNumber(value: Int) -> String {
+    func timeElapsedString() -> String {
+        let todayTotalMinutes = pomodoroManager.todayTotalMinutes()
+
+        var hours : String = String(todayTotalMinutes / 60)
+        var minutes : String = String(format: "%02d", (todayTotalMinutes % 60))
         
-        let full = value / 5
-        let resto = value % 5
-        var retorno = ""
-        
-        for (var i = 0 ; i < full ; i++) {
-            retorno += "5 "
-        }
-        if (resto != 0) {
-            retorno += String(resto)
-        }
-        
-        return retorno
+        return " (\(hours):\(minutes))"
     }
     
     func updateTimer(timer: NSTimer) {
@@ -181,6 +194,9 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
     
     override func viewDidLoad() {
         
+        // Animator
+        animator = UIDynamicAnimator(referenceView: self.view)
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "rotated", name: UIDeviceOrientationDidChangeNotification, object: nil)
         
         resetTimer()
@@ -223,34 +239,30 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
         modeButton.setTitle(NSLocalizedString("mode_working", comment: ""), forState: UIControlState.Normal)
         
         // Configuramos las dos acciones del Today Button
+        let gameCenterTapGesture = UITapGestureRecognizer(target: self, action: Selector("gameCenterTap:"))
         let todayTapGesture = UITapGestureRecognizer(target: self, action: Selector("todayTap:"))
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: Selector("todayLongPress:"))
+        gameCenterButton.addGestureRecognizer(gameCenterTapGesture)
         todayButton.addGestureRecognizer(todayTapGesture)
-        todayButton.addGestureRecognizer(longPressGesture)
         
     }
     
-    func todayTap(gesture : UITapGestureRecognizer) {
+    func gameCenterTap(gesture : UITapGestureRecognizer) {
         
         // Abrimos el Game Center
 
         var gcViewController: GKGameCenterViewController = GKGameCenterViewController()
         
         gcViewController.gameCenterDelegate = self
-        
-        //        gcViewController.viewState = GKGameCenterViewControllerState.Leaderboards
-        //        gcViewController.leaderboardIdentifier = "losmasproductivos"
+        gcViewController.viewState = GKGameCenterViewControllerState.Leaderboards
         
         self.presentViewController(gcViewController, animated: true, completion: nil)
         
     }
-    func todayLongPress(gesture : UILongPressGestureRecognizer) {
+    func todayTap(gesture : UITapGestureRecognizer) {
         
         // Abrimos un menu contextual para borrar el histórico de hoy o de siempre
-        // 1
         let optionMenu = UIAlertController(title: nil, message: NSLocalizedString("history_label", comment: ""), preferredStyle: .ActionSheet)
-        
-        // 2
+
         let deleteTodayAction = UIAlertAction(title: NSLocalizedString("history_delete_today", comment: ""), style: UIAlertActionStyle.Destructive, handler: {
             (alert: UIAlertAction!) -> Void in
             self.pomodoroManager.deleteTodayData()
@@ -263,17 +275,14 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
             self.updateLeaderboard()
         })
 
-        //
         let cancelAction = UIAlertAction(title: NSLocalizedString("history_cancel", comment: ""), style: .Cancel, handler: {
             (alert: UIAlertAction!) -> Void in
         })
         
-        // 4
         optionMenu.addAction(deleteTodayAction)
         optionMenu.addAction(deleteAlltimeAction)
         optionMenu.addAction(cancelAction)
         
-        // 5
         self.presentViewController(optionMenu, animated: true, completion: nil)
         
     }
@@ -541,6 +550,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
             self.clockLabel.hidden = true
             self.modeButton.hidden = true
             self.infoButton.hidden = true
+            self.gameCenterButton.hidden = true
             self.todayButton.hidden = true
         }
         if(UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation))
@@ -548,6 +558,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
             self.clockLabel.hidden = false
             self.todayButton.hidden = false
             self.infoButton.hidden = false
+            self.gameCenterButton.hidden = false
             self.modeButton.hidden = false
         }
     }
@@ -563,11 +574,119 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
     
     @IBAction func showTutorialInfoButton() {
         
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        userDefaults.setObject(true, forKey: "showTutorial")
+//        let userDefaults = NSUserDefaults.standardUserDefaults()
+//        userDefaults.setObject(true, forKey: "showTutorial")
+//
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        appDelegate.showDemoViewController()
+        onScreenHelp()
+        
+    }
 
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.showDemoViewController()
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        clockTimer?.invalidate()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    var bubbleView : BubbleView?
+    
+    func animateBubble() {
+        
+        if (tutorial) {
+            
+            self.bubbleView?.removeFromSuperview()
+            
+            if (tutorialStep == 0) {
+                bubbleView = BubbleView(forFrame: self.modeButton.frame, center: self.modeButton.center, onView: self.view, text: "Cambia de modo entre trabajo y descanso", color: UIColor.whiteColor(), direction: BubbleViewDirection.Up, arrow: true)
+            }
+            
+            if (tutorialStep == 1) {
+                bubbleView = BubbleView(forFrame: self.timerLabel.frame, center: self.timerLabel.center, onView: self.view, text: "Cambia la duración del modo seleccionado deslizando un dedo de izquierda a derecha sobre el temporizador", color: UIColor.whiteColor(), direction: BubbleViewDirection.Down, arrow: true)
+            }
+
+            if (tutorialStep == 2) {
+                bubbleView = BubbleView(forFrame: self.clockLabel.frame, center: self.clockLabel.center, onView: self.view, text: "Configura el color de fondo del modo seleccionado deslizando arriba y abajo dos dedos", color: UIColor.whiteColor(), direction: BubbleViewDirection.Up, arrow: false)
+            }
+
+            if (tutorialStep == 3) {
+                bubbleView = BubbleView(forFrame: self.gameCenterButton.frame, center: self.gameCenterButton.center, onView: self.view, text: "Accede a Game Center para ver tus puntuaciones frente a las de tus amigos", color: UIColor.whiteColor(), direction: BubbleViewDirection.Down, arrow: true)
+            }
+            
+            if (tutorialStep == 3) {
+                bubbleView = BubbleView(forFrame: self.gameCenterButton.frame, center: self.gameCenterButton.center, onView: self.view, text: "Accede a Game Center para ver tus puntuaciones frente a las de tus amigos", color: UIColor.whiteColor(), direction: BubbleViewDirection.Down, arrow: true)
+            }
+            
+            if (tutorialStep == 4) {
+                bubbleView = BubbleView(forFrame: self.todayButton.frame, center: self.todayButton.center, onView: self.view, text: "Visualiza las sesiones y su duración total en el día de hoy. Pulsa para acceder al menu de Estadísticas", color: UIColor.whiteColor(), direction: BubbleViewDirection.Down, arrow: true)
+            }
+            
+            if (tutorialStep == 5) {
+                bubbleView = BubbleView(forFrame: self.infoButton.frame, center: self.infoButton.center, onView: self.view, text: "Accede de nuevo a esta ayuda en cualquier momento", color: UIColor.whiteColor(), direction: BubbleViewDirection.Down, arrow: true)
+            }
+
+            if (tutorialStep == 6) {
+                
+                tutorialStep = 0
+                tutorial = false
+                UIView.animateWithDuration(1.0, animations: { () -> Void in
+                    self.tutorialBackgroundView.alpha = 0.0
+                    }) { (finished) -> Void in
+                        self.tutorialView.removeFromSuperview()
+                        self.tutorialBackgroundView.removeFromSuperview()
+                }
+                
+            } else {
+                
+                var originalPosition : CGPoint = bubbleView!.center
+                bubbleView?.frame.origin.x = -100
+                bubbleView?.frame.origin.y = -100
+                
+                if (tutorialStep < 6) {
+                    tutorialView.addSubview(bubbleView!)
+                }
+                
+                if snapBehaviour != nil {
+                    animator.removeBehavior(snapBehaviour)
+                }
+                
+                snapBehaviour = UISnapBehavior(item: bubbleView!, snapToPoint: originalPosition)
+                snapBehaviour.damping = 0.3
+                animator.addBehavior(snapBehaviour)
+                
+                tutorialStep++
+            }
+            
+        }
+        
+    }
+    
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        animateBubble()
+    }
+    
+    func onScreenHelp() {
+
+        tutorial = true
+        
+        // Dark layer for tutorial
+        tutorialBackgroundView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height))
+        tutorialBackgroundView.backgroundColor = UIColor.blackColor()
+        tutorialBackgroundView.alpha = 0.0
+        
+        tutorialView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height))
+        
+        self.view.addSubview(tutorialBackgroundView)
+        self.view.addSubview(tutorialView)
+        
+        UIView.animateWithDuration(1.0, animations: { () -> Void in
+            self.tutorialBackgroundView.alpha = 0.5
+        }) { (finished) -> Void in
+            self.animateBubble()
+        }
         
     }
 }

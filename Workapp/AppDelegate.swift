@@ -87,6 +87,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func saveData() {
         
+        pomodoroManager.timer.invalidate()
+        
         let userDefaults = NSUserDefaults.standardUserDefaults()
         
         userDefaults.setObject(pomodoroManager.pomodoroMinutes, forKey: "pomodoroMinutes")
