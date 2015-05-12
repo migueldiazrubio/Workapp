@@ -552,6 +552,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
             self.infoButton.hidden = true
             self.gameCenterButton.hidden = true
             self.todayButton.hidden = true
+            cancelOnScreenHelp(false)
         }
         if(UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation))
         {
@@ -630,14 +631,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
 
             if (tutorialStep == 6) {
                 
-                tutorialStep = 0
-                tutorial = false
-                UIView.animateWithDuration(1.0, animations: { () -> Void in
-                    self.tutorialBackgroundView.alpha = 0.0
-                    }) { (finished) -> Void in
-                        self.tutorialView.removeFromSuperview()
-                        self.tutorialBackgroundView.removeFromSuperview()
-                }
+                cancelOnScreenHelp(true)
                 
             } else {
                 
@@ -666,6 +660,24 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         animateBubble()
+    }
+    
+    func cancelOnScreenHelp(animated: Bool) {
+        if (tutorial) {
+            if (animated) {
+                UIView.animateWithDuration(1.0, animations: { () -> Void in
+                    self.tutorialBackgroundView.alpha = 0.0
+                    }) { (finished) -> Void in
+                        self.tutorialView.removeFromSuperview()
+                        self.tutorialBackgroundView.removeFromSuperview()
+                }
+            } else {
+                self.tutorialView.removeFromSuperview()
+                self.tutorialBackgroundView.removeFromSuperview()
+            }
+            tutorialStep = 0
+            tutorial = false
+        }
     }
     
     func onScreenHelp() {
