@@ -6,127 +6,6 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--My Stats View Controller-->
-        <scene sceneID="S0D-dS-Xk4">
-            <objects>
-                <viewController storyboardIdentifier="myStatsViewController" id="CrY-h5-Y4q" customClass="MyStatsViewController" customModule="Workapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Dvd-fR-ka8"/>
-                        <viewControllerLayoutGuide type="bottom" id="Skq-pG-RgK"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="3ps-t9-ea4">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcO-T5-Xxg">
-                                <rect key="frame" x="16" y="64" width="108" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="108" id="bSy-aU-WAc"/>
-                                    <constraint firstAttribute="height" constant="70" id="jdQ-Pq-p3K"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="70"/>
-                                <color key="textColor" red="0.99607849120000003" green="0.99215692280000001" blue="0.99215692280000001" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHl-l5-We5">
-                                <rect key="frame" x="246" y="64" width="108" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="108" id="NRJ-dK-Eig"/>
-                                    <constraint firstAttribute="height" constant="70" id="OeL-4q-g8O"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="70"/>
-                                <color key="textColor" red="0.99607849120000003" green="0.99215692280000001" blue="0.99215692280000001" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LNE-IP-2sY">
-                                <rect key="frame" x="476" y="64" width="108" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="KoF-0g-Hmc"/>
-                                    <constraint firstAttribute="width" constant="108" id="R29-Cs-knt"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="70"/>
-                                <color key="textColor" red="0.99607849120000003" green="0.99215692280000001" blue="0.99215692280000001" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyt-Nl-sy9">
-                                <rect key="frame" x="476" y="131" width="108" height="52"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="108" id="TGf-hI-eyT"/>
-                                    <constraint firstAttribute="height" constant="52" id="sMh-aI-UhC"/>
-                                </constraints>
-                                <string key="text">pasada
-semana</string>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
-                                <color key="textColor" red="0.99607849120000003" green="0.99215692280000001" blue="0.99215692280000001" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sc9-hp-oTi">
-                                <rect key="frame" x="246" y="131" width="108" height="52"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="108" id="b83-RL-zGW"/>
-                                    <constraint firstAttribute="height" constant="52" id="gL3-8K-dKw"/>
-                                </constraints>
-                                <string key="text">esta
-semana</string>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
-                                <color key="textColor" red="0.99607849120000003" green="0.99215692280000001" blue="0.99215692280000001" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hoy" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sFW-wa-f5O">
-                                <rect key="frame" x="16" y="131" width="108" height="52"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="52" id="arW-Kd-Pby"/>
-                                    <constraint firstAttribute="width" constant="108" id="p5U-41-cWF"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
-                                <color key="textColor" red="0.99607849120000003" green="0.99215692280000001" blue="0.99215692280000001" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r1v-RW-FZc">
-                                <rect key="frame" x="289" y="558" width="22" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="CcH-4G-AiI"/>
-                                    <constraint firstAttribute="width" constant="22" id="raA-Xh-MXk"/>
-                                </constraints>
-                                <state key="normal" image="icon_close">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="closeStats" destination="CrY-h5-Y4q" eventType="touchUpInside" id="9BP-c1-ZYg"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.65855921959999997" green="0.043053398860000001" blue="0.036142498840000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="sFW-wa-f5O" firstAttribute="top" secondItem="pcO-T5-Xxg" secondAttribute="bottom" constant="-3" id="5KU-yC-FO6"/>
-                            <constraint firstAttribute="centerX" secondItem="r1v-RW-FZc" secondAttribute="centerX" id="G1Z-Ma-0lF"/>
-                            <constraint firstAttribute="trailing" secondItem="zyt-Nl-sy9" secondAttribute="trailing" constant="16" id="HlV-XO-mwE"/>
-                            <constraint firstAttribute="trailing" secondItem="LNE-IP-2sY" secondAttribute="trailing" constant="16" id="KgY-X3-5QH"/>
-                            <constraint firstItem="sFW-wa-f5O" firstAttribute="leading" secondItem="3ps-t9-ea4" secondAttribute="leading" constant="16" id="KhY-N1-MSo"/>
-                            <constraint firstItem="LNE-IP-2sY" firstAttribute="top" secondItem="Dvd-fR-ka8" secondAttribute="bottom" constant="44" id="O2V-kz-ZRk"/>
-                            <constraint firstItem="pcO-T5-Xxg" firstAttribute="top" secondItem="Dvd-fR-ka8" secondAttribute="bottom" constant="44" id="Ql8-Hx-EUE"/>
-                            <constraint firstItem="Skq-pG-RgK" firstAttribute="top" secondItem="r1v-RW-FZc" secondAttribute="bottom" constant="20" id="UAg-61-OpP"/>
-                            <constraint firstItem="sc9-hp-oTi" firstAttribute="top" secondItem="IHl-l5-We5" secondAttribute="bottom" constant="-3" id="ZWC-HY-czm"/>
-                            <constraint firstItem="pcO-T5-Xxg" firstAttribute="leading" secondItem="3ps-t9-ea4" secondAttribute="leading" constant="16" id="g5p-3j-Ohe"/>
-                            <constraint firstItem="IHl-l5-We5" firstAttribute="top" secondItem="Dvd-fR-ka8" secondAttribute="bottom" constant="44" id="jR7-EN-giQ"/>
-                            <constraint firstItem="zyt-Nl-sy9" firstAttribute="top" secondItem="LNE-IP-2sY" secondAttribute="bottom" constant="-3" id="mvd-Y4-Cej"/>
-                            <constraint firstAttribute="centerX" secondItem="sc9-hp-oTi" secondAttribute="centerX" id="peh-6h-yGP"/>
-                            <constraint firstAttribute="centerX" secondItem="IHl-l5-We5" secondAttribute="centerX" id="q3Y-56-882"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="lblLastWeek" destination="zyt-Nl-sy9" id="t6k-f3-wc6"/>
-                        <outlet property="lblThisWeek" destination="sc9-hp-oTi" id="4jT-vg-kB3"/>
-                        <outlet property="lblToday" destination="sFW-wa-f5O" id="gzS-kw-Yoj"/>
-                        <outlet property="lblValueLastWeek" destination="LNE-IP-2sY" id="VH1-Cc-Yvq"/>
-                        <outlet property="lblValueThisWeek" destination="IHl-l5-We5" id="slT-uA-Swl"/>
-                        <outlet property="lblValueToday" destination="pcO-T5-Xxg" id="SXV-ED-Ete"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0y9-8J-haS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1426" y="-462"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -461,7 +340,6 @@ semana</string>
     </scenes>
     <resources>
         <image name="icon info" width="44" height="44"/>
-        <image name="icon_close" width="44" height="44"/>
         <image name="icon_gamecenter" width="44" height="44"/>
     </resources>
 </document>

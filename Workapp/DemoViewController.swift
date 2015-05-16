@@ -51,12 +51,12 @@ class DemoViewController: UIPageViewController {
         
         thirdVC.stepTitle = NSLocalizedString("step_3_title", comment: "")
         thirdVC.stepSubtitle = NSLocalizedString("step_3_subtitle", comment: "")
-        thirdVC.stepImage = UIImage(named: "demo_03")
+        thirdVC.stepImage = UIImage(named: "demo_01")
         thirdVC.stepNumber = 3
         
         forthVC.stepTitle = NSLocalizedString("step_4_title", comment: "")
         forthVC.stepSubtitle = NSLocalizedString("step_4_subtitle", comment: "")
-        forthVC.stepImage = UIImage(named: "demo_02")
+        forthVC.stepImage = UIImage(named: "demo_01")
         forthVC.stepNumber = 4
         
         fifthVC.stepTitle = NSLocalizedString("step_5_title", comment: "")
@@ -82,10 +82,7 @@ extension DemoViewController : UIPageViewControllerDataSource {
     func nextView() {
 
         if (currentPage == pages.count) {
-            let userDefaults = NSUserDefaults.standardUserDefaults()
-            userDefaults.setBool(false, forKey: "showTutorial")
-            userDefaults.synchronize()
-            
+
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             appDelegate.showMainViewController()
 

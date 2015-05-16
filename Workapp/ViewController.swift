@@ -266,6 +266,9 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
         let deleteTodayAction = UIAlertAction(title: NSLocalizedString("history_delete_today", comment: ""), style: UIAlertActionStyle.Destructive, handler: {
             (alert: UIAlertAction!) -> Void in
             self.pomodoroManager.deleteTodayData()
+            
+            
+            
             self.updateLeaderboard()
         })
         
@@ -286,7 +289,6 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
         self.presentViewController(optionMenu, animated: true, completion: nil)
         
     }
-    
     
     func appActive(notification : NSNotification) {
         
@@ -575,12 +577,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
     
     @IBAction func showTutorialInfoButton() {
         
-//        let userDefaults = NSUserDefaults.standardUserDefaults()
-//        userDefaults.setObject(true, forKey: "showTutorial")
-//
-//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//        appDelegate.showDemoViewController()
-        onScreenHelp()
+        onScreenHelp(true)
         
     }
 
@@ -591,15 +588,37 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        var showWalkThrough : Bool?
+        
+        if let flagValue = userDefaults.objectForKey("showWalkThrough") as? Bool {
+            showWalkThrough = flagValue
+        } else {
+            showWalkThrough = true
+        }
+        
+        if (showWalkThrough!) {
+            onScreenHelp(false)
+        }
+    
     }
     
     var bubbleView : BubbleView?
+    var fullHelp : Bool?
     
     func animateBubble() {
         
         if (tutorial) {
             
             self.bubbleView?.removeFromSuperview()
+            
+            if let full = fullHelp {
+                if (!full) {
+                    tutorialStep = 5
+                    self.fullHelp = true
+                }
+            }
             
             if (tutorialStep == 0) {
                 bubbleView = BubbleView(forFrame: self.modeButton.frame, center: self.modeButton.center, onView: self.view, text: "Cambia de modo entre trabajo y descanso", color: UIColor.whiteColor(), direction: BubbleViewDirection.Up, arrow: true)
@@ -626,7 +645,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
             }
             
             if (tutorialStep == 5) {
-                bubbleView = BubbleView(forFrame: self.infoButton.frame, center: self.infoButton.center, onView: self.view, text: "Accede de nuevo a esta ayuda en cualquier momento", color: UIColor.whiteColor(), direction: BubbleViewDirection.Down, arrow: true)
+                bubbleView = BubbleView(forFrame: self.infoButton.frame, center: self.infoButton.center, onView: self.view, text: "Accede a la ayuda para conocer como utilizar Workapp.", color: UIColor.whiteColor(), direction: BubbleViewDirection.Down, arrow: true)
             }
 
             if (tutorialStep == 6) {
@@ -665,6 +684,11 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
     func cancelOnScreenHelp(animated: Bool) {
         if (tutorial) {
             if (animated) {
+
+                let userDefaults = NSUserDefaults.standardUserDefaults()
+                userDefaults.setBool(false, forKey: "showWalkThrough")
+                userDefaults.synchronize()
+                
                 UIView.animateWithDuration(1.0, animations: { () -> Void in
                     self.tutorialBackgroundView.alpha = 0.0
                     }) { (finished) -> Void in
@@ -680,7 +704,9 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
         }
     }
     
-    func onScreenHelp() {
+    func onScreenHelp(fullHelp: Bool) {
+        
+        self.fullHelp = fullHelp
 
         tutorial = true
         

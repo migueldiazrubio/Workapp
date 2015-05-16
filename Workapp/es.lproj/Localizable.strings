@@ -8,13 +8,13 @@
 
 "step_1_title" = "Bienvenido a Workapp";
 "step_1_subtitle" = "¡Empieza a ser más productivo!";
-"step_2_title" = "Work & break";
-"step_2_subtitle" = "Elige una tarea y comienza a trabajar con un simple tap. Descansa brevemente entre cada sesión de trabajo.";
-"step_3_title" = "Configura la duración";
-"step_3_subtitle" = "Puedes configurar la duración de las sesiones de trabajo y descanso con un simple swipe sobre el temporizador.";
-"step_4_title" = "Modifica la apariencia";
-"step_4_subtitle" = "Utilizando un gesto arriba y abajo con dos dedos puedes configurar el color de fondo para las sesiones de trabajo o descanso.";
-"step_5_title" = "¡Comienza a trabajar!";
+"step_2_title" = "La técnica";
+"step_2_subtitle" = "La técnica Pomodoro se basa en ejecutar ciclos de trabajo ininterrumpido de 25 minutos, seguidos de un ciclo de descanso de 5 minutos.";
+"step_3_title" = "Resultados rápidamente";
+"step_3_subtitle" = "En cuanto cojas el hábito, verás como sacas adelante más trabajo en tu día a día.";
+"step_4_title" = "Workapp";
+"step_4_subtitle" = "Workapp te lo pone muy fácil, notificandote en cada momento qué debes hacer, y midiendo tus progresos.";
+"step_5_title" = "¡Empieza a trabajar!";
 
 "breakAction" = "Descansar";
 "pomodoroAction" = "Trabajar";

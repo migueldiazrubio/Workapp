@@ -8,12 +8,12 @@
 
 "step_1_title" = "Welcome to Workapp";
 "step_1_subtitle" = "Be more productive!";
-"step_2_title" = "Work & break";
-"step_2_subtitle" = "Choose your tasks and start working with a simple tap. Take a break between each work time.";
-"step_3_title" = "Configure timers";
-"step_3_subtitle" = "You can set work and break length with a one finger swipe over the timer.";
-"step_4_title" = "Change the app theme";
-"step_4_subtitle" = "Using two finger gesture up and down you can change background color for work and break.";
+"step_2_title" = "The technique";
+"step_2_subtitle" = "The Pomodoro technique is based on uninterrupted work cycles run 25 minutes, followed by a series of 5-minute break.";
+"step_3_title" = "Results quickly";
+"step_3_subtitle" = "Once you pick the habit, you'll see as you get more work done in your day to day.";
+"step_4_title" = "Workapp";
+"step_4_subtitle" = "Workapp makes it very easy, notifying you at all times what to do, and measuring your progress.";
 "step_5_title" = "Start working now!";
 
 "breakAction" = "Break";

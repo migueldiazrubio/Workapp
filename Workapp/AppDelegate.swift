@@ -40,15 +40,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func showDemoViewController() {
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
-        var showTutorial : Bool?
+        var showWalkThrough : Bool?
         
-        if let flagValue = userDefaults.objectForKey("showTutorial") as? Bool {
-            showTutorial = flagValue
+        if let flagValue = userDefaults.objectForKey("showWalkThrough") as? Bool {
+            showWalkThrough = flagValue
         } else {
-            showTutorial = true
+            showWalkThrough = true
         }
         
-        if (showTutorial!) {
+        if (showWalkThrough!) {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let demoVC = storyboard.instantiateViewControllerWithIdentifier("demoViewController") as! DemoViewController
             

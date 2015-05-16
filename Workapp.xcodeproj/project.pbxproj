@@ -25,10 +25,10 @@
 		277DBD0D1A686D1300087E0C /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277DBD0C1A686D1300087E0C /* CoreDataStack.swift */; };
 		277DBD101A686EC800087E0C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277DBD0F1A686EC800087E0C /* CoreData.framework */; };
 		277DBD141A69C38F00087E0C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277DBD131A69C38F00087E0C /* AudioToolbox.framework */; };
+		2780D0871B0296EC00F806D6 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2780D0861B0296EC00F806D6 /* Settings.bundle */; };
 		2789DE961AA4F824009A3F21 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2789DE951AA4F824009A3F21 /* FirstViewController.swift */; };
 		2789DE981AAA04CA009A3F21 /* MiguelToPalote-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2789DE971AAA04CA009A3F21 /* MiguelToPalote-Regular.ttf */; };
 		27A4F2601A895B5000B3CDFE /* StepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A4F25F1A895B5000B3CDFE /* StepViewController.swift */; };
-		27AAFEA81AFDF11300138B6F /* MyStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AAFEA71AFDF11300138B6F /* MyStatsViewController.swift */; };
 		27B01B091AF4FE6F00068C6F /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B01B081AF4FE6F00068C6F /* GameKit.framework */; };
 		27C5AD131A8D542400CC5140 /* workapp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 27C5AD121A8D542400CC5140 /* workapp.mp3 */; };
 		27E2E4021AE42BC3000AA5FB /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27E2E4011AE42BC3000AA5FB /* Media.xcassets */; };
@@ -68,10 +68,10 @@
 		277DBD0C1A686D1300087E0C /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		277DBD0F1A686EC800087E0C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		277DBD131A69C38F00087E0C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		2780D0861B0296EC00F806D6 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2789DE951AA4F824009A3F21 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		2789DE971AAA04CA009A3F21 /* MiguelToPalote-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MiguelToPalote-Regular.ttf"; sourceTree = "<group>"; };
 		27A4F25F1A895B5000B3CDFE /* StepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepViewController.swift; sourceTree = "<group>"; };
-		27AAFEA71AFDF11300138B6F /* MyStatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatsViewController.swift; sourceTree = "<group>"; };
 		27B01B081AF4FE6F00068C6F /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		27C5AD121A8D542400CC5140 /* workapp.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = workapp.mp3; sourceTree = "<group>"; };
 		27E2E4011AE42BC3000AA5FB /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
@@ -129,9 +129,9 @@
 				277DBD051A6864F800087E0C /* PomodoroManager.swift */,
 				277DBCE71A6319C900087E0C /* ViewController.swift */,
 				274001E41A7CC05000EAE48B /* DemoViewController.swift */,
-				27AAFEA71AFDF11300138B6F /* MyStatsViewController.swift */,
 				277DBCE91A6319C900087E0C /* Main.storyboard */,
 				276E806F1AA0F9D60000210F /* Launch Screen.xib */,
+				2780D0861B0296EC00F806D6 /* Settings.bundle */,
 				277DBCEC1A6319C900087E0C /* Images.xcassets */,
 				27E2E4011AE42BC3000AA5FB /* Media.xcassets */,
 				272FF47D1A8BFD7E00749B6D /* Localizable.strings */,
@@ -283,6 +283,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2780D0871B0296EC00F806D6 /* Settings.bundle in Resources */,
 				2789DE981AAA04CA009A3F21 /* MiguelToPalote-Regular.ttf in Resources */,
 				272FF47B1A8BFD7E00749B6D /* Localizable.strings in Resources */,
 				27E2E4021AE42BC3000AA5FB /* Media.xcassets in Resources */,
@@ -323,7 +324,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27AAFEA81AFDF11300138B6F /* MyStatsViewController.swift in Sources */,
 				2789DE961AA4F824009A3F21 /* FirstViewController.swift in Sources */,
 				277DBCE81A6319C900087E0C /* ViewController.swift in Sources */,
 				277DBCE61A6319C900087E0C /* AppDelegate.swift in Sources */,

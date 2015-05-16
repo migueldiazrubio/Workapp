@@ -313,6 +313,8 @@ class PomodoroManager {
             println("Could not delete recors for Pomodoros entity")
         }
 
+        updateBadgeIcon()
+        
     }
     
     func deleteAllData() {
@@ -334,6 +336,7 @@ class PomodoroManager {
             println("Could not delete recors for Pomodoros entity")
         }
         
+        updateBadgeIcon()
         
     }
     
