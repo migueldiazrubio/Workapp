@@ -34,4 +34,11 @@
 "stats_thisweek" = "esta\nsemana";
 "stats_lastweek" = "pasada\nsemana";
 
+"tutorial_step_0" = "Cambia de modo entre trabajo y descanso";
+"tutorial_step_1" = "Cambia la duración del modo seleccionado deslizando un dedo de izquierda a derecha sobre el temporizador";
+"tutorial_step_2" = "Configura el color de fondo del modo seleccionado deslizando arriba y abajo dos dedos";
+"tutorial_step_3" = "Accede a Game Center para ver tus puntuaciones frente a las de tus amigos";
+"tutorial_step_4" = "Visualiza las sesiones y su duración total en el día de hoy. Pulsa para acceder al menu de Estadísticas";
+"tutorial_step_5" = "Accede a la ayuda para conocer como utilizar Workapp";
+
 

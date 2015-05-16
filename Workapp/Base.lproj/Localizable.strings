@@ -32,3 +32,11 @@
 "stats_today" = "today";
 "stats_thisweek" = "this\nweek";
 "stats_lastweek" = "last\nweek";
+
+"tutorial_step_0" = "Switches modes between work and rest";
+"tutorial_step_1" = "Change the duration of the selected mode by sliding your finger from left to right on the timer";
+"tutorial_step_2" = "Sets the background color of the selected mode by sliding two fingers up and down";
+"tutorial_step_3" = "Access Game Center to see your scores against those of your friends";
+"tutorial_step_4" = "Display sessions and its total length today. Click to access the menu Statistics";
+"tutorial_step_5" = "Get the help to know how to use Workapp";
+

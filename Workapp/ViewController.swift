@@ -621,31 +621,27 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
             }
             
             if (tutorialStep == 0) {
-                bubbleView = BubbleView(forFrame: self.modeButton.frame, center: self.modeButton.center, onView: self.view, text: "Cambia de modo entre trabajo y descanso", color: UIColor.whiteColor(), direction: BubbleViewDirection.Up, arrow: true)
+                bubbleView = BubbleView(forFrame: self.modeButton.frame, center: self.modeButton.center, onView: self.view, text: NSLocalizedString("tutorial_step_0", comment: ""), color: UIColor.whiteColor(), direction: BubbleViewDirection.Up, arrow: true)
             }
             
             if (tutorialStep == 1) {
-                bubbleView = BubbleView(forFrame: self.timerLabel.frame, center: self.timerLabel.center, onView: self.view, text: "Cambia la duración del modo seleccionado deslizando un dedo de izquierda a derecha sobre el temporizador", color: UIColor.whiteColor(), direction: BubbleViewDirection.Down, arrow: true)
+                bubbleView = BubbleView(forFrame: self.timerLabel.frame, center: self.timerLabel.center, onView: self.view, text: NSLocalizedString("tutorial_step_1", comment: ""), color: UIColor.whiteColor(), direction: BubbleViewDirection.Down, arrow: true)
             }
 
             if (tutorialStep == 2) {
-                bubbleView = BubbleView(forFrame: self.clockLabel.frame, center: self.clockLabel.center, onView: self.view, text: "Configura el color de fondo del modo seleccionado deslizando arriba y abajo dos dedos", color: UIColor.whiteColor(), direction: BubbleViewDirection.Up, arrow: false)
+                bubbleView = BubbleView(forFrame: self.clockLabel.frame, center: self.clockLabel.center, onView: self.view, text: NSLocalizedString("tutorial_step_2", comment: ""), color: UIColor.whiteColor(), direction: BubbleViewDirection.Up, arrow: false)
             }
 
             if (tutorialStep == 3) {
-                bubbleView = BubbleView(forFrame: self.gameCenterButton.frame, center: self.gameCenterButton.center, onView: self.view, text: "Accede a Game Center para ver tus puntuaciones frente a las de tus amigos", color: UIColor.whiteColor(), direction: BubbleViewDirection.Down, arrow: true)
-            }
-            
-            if (tutorialStep == 3) {
-                bubbleView = BubbleView(forFrame: self.gameCenterButton.frame, center: self.gameCenterButton.center, onView: self.view, text: "Accede a Game Center para ver tus puntuaciones frente a las de tus amigos", color: UIColor.whiteColor(), direction: BubbleViewDirection.Down, arrow: true)
+                bubbleView = BubbleView(forFrame: self.gameCenterButton.frame, center: self.gameCenterButton.center, onView: self.view, text: NSLocalizedString("tutorial_step_3", comment: ""), color: UIColor.whiteColor(), direction: BubbleViewDirection.Down, arrow: true)
             }
             
             if (tutorialStep == 4) {
-                bubbleView = BubbleView(forFrame: self.todayButton.frame, center: self.todayButton.center, onView: self.view, text: "Visualiza las sesiones y su duración total en el día de hoy. Pulsa para acceder al menu de Estadísticas", color: UIColor.whiteColor(), direction: BubbleViewDirection.Down, arrow: true)
+                bubbleView = BubbleView(forFrame: self.todayButton.frame, center: self.todayButton.center, onView: self.view, text: NSLocalizedString("tutorial_step_4", comment: ""), color: UIColor.whiteColor(), direction: BubbleViewDirection.Down, arrow: true)
             }
             
             if (tutorialStep == 5) {
-                bubbleView = BubbleView(forFrame: self.infoButton.frame, center: self.infoButton.center, onView: self.view, text: "Accede a la ayuda para conocer como utilizar Workapp.", color: UIColor.whiteColor(), direction: BubbleViewDirection.Down, arrow: true)
+                bubbleView = BubbleView(forFrame: self.infoButton.frame, center: self.infoButton.center, onView: self.view, text: NSLocalizedString("tutorial_step_5", comment: ""), color: UIColor.whiteColor(), direction: BubbleViewDirection.Down, arrow: true)
             }
 
             if (tutorialStep == 6) {
