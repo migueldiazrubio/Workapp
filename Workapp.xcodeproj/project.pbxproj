@@ -29,7 +29,6 @@
 		2789DE961AA4F824009A3F21 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2789DE951AA4F824009A3F21 /* FirstViewController.swift */; };
 		2789DE981AAA04CA009A3F21 /* MiguelToPalote-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2789DE971AAA04CA009A3F21 /* MiguelToPalote-Regular.ttf */; };
 		27A4F2601A895B5000B3CDFE /* StepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A4F25F1A895B5000B3CDFE /* StepViewController.swift */; };
-		27B01B091AF4FE6F00068C6F /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B01B081AF4FE6F00068C6F /* GameKit.framework */; };
 		27C5AD131A8D542400CC5140 /* workapp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 27C5AD121A8D542400CC5140 /* workapp.mp3 */; };
 		27E2E4021AE42BC3000AA5FB /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27E2E4011AE42BC3000AA5FB /* Media.xcassets */; };
 /* End PBXBuildFile section */
@@ -87,7 +86,6 @@
 				277DBD141A69C38F00087E0C /* AudioToolbox.framework in Frameworks */,
 				277DBD101A686EC800087E0C /* CoreData.framework in Frameworks */,
 				27543D721AF50ED7004E46D6 /* Crashlytics.framework in Frameworks */,
-				27B01B091AF4FE6F00068C6F /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import GameKit
 
-class ViewController: UIViewController, GKGameCenterControllerDelegate {
+class ViewController: UIViewController {
     
     // Animation
     var animator:UIDynamicAnimator!
@@ -188,8 +187,6 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
         
         showHideControls()
         
-        connectToGameKit()
-        
     }
     
     override func viewDidLoad() {
@@ -239,26 +236,12 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
         modeButton.setTitle(NSLocalizedString("mode_working", comment: ""), forState: UIControlState.Normal)
         
         // Configuramos las dos acciones del Today Button
-        let gameCenterTapGesture = UITapGestureRecognizer(target: self, action: Selector("gameCenterTap:"))
-        let todayTapGesture = UITapGestureRecognizer(target: self, action: Selector("todayTap:"))
-        gameCenterButton.addGestureRecognizer(gameCenterTapGesture)
-        todayButton.addGestureRecognizer(todayTapGesture)
+        let statsTap = UITapGestureRecognizer(target: self, action: Selector("statsTap:"))
+        gameCenterButton.addGestureRecognizer(statsTap)
         
     }
     
-    func gameCenterTap(gesture : UITapGestureRecognizer) {
-        
-        // Abrimos el Game Center
-
-        var gcViewController: GKGameCenterViewController = GKGameCenterViewController()
-        
-        gcViewController.gameCenterDelegate = self
-        gcViewController.viewState = GKGameCenterViewControllerState.Leaderboards
-        
-        self.presentViewController(gcViewController, animated: true, completion: nil)
-        
-    }
-    func todayTap(gesture : UITapGestureRecognizer) {
+    func statsTap(gesture : UITapGestureRecognizer) {
         
         // Abrimos un menu contextual para borrar el histórico de hoy o de siempre
         let optionMenu = UIAlertController(title: nil, message: NSLocalizedString("history_label", comment: ""), preferredStyle: .ActionSheet)
@@ -505,43 +488,6 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
                 }
             })
             
-        }
-        
-    }
-    
-    /* Game Center */
-    
-    func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!) {
-        gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func connectToGameKit() {
-        
-        println("Connecting to Game Center...")
-        
-        let localPlayer = GKLocalPlayer.localPlayer()
-        
-        localPlayer.authenticateHandler = {(var gameCenterVC:UIViewController!,
-            
-            var gameCenterError:NSError!) -> Void in
-            
-            if gameCenterVC != nil {
-                
-                println("Not logged. Present login screen")
-                
-                self.presentViewController(gameCenterVC, animated: true, completion:nil)
-                
-            } else {
-                
-                if localPlayer.authenticated {
-                    println("Game Center enabled")
-                    self.gameCenterEnabled = true
-                } else {
-                    println("Game Center disabled")
-                    self.gameCenterEnabled = false
-                }
-                
-            }
         }
         
     }

@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 import AudioToolbox
 import AVFoundation
-import GameKit
 
 class PomodoroManager {
     
@@ -203,7 +202,6 @@ class PomodoroManager {
             
             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
             
-            reportCurrentPomodorosGameCenter()
         }
         
         updateBadgeIcon()
@@ -270,19 +268,7 @@ class PomodoroManager {
         // TODO: Aqui habría que guardar en disco el fireDate
         
     }
-    
-    func reportCurrentPomodorosGameCenter() {
         
-        let score : GKScore = GKScore(leaderboardIdentifier: "losmasproductivos")
-        score.value = (Int64)(self.todayTotalMinutes())
-        score.context = 0
-        
-        GKScore.reportScores([score], withCompletionHandler: { (error) -> Void in
-            println("Enviado el record a Game Center")
-        })
-        
-    }
-    
     func deleteTodayData() {
         
         let cal: NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
