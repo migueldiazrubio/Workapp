@@ -15,7 +15,7 @@ enum BubbleViewDirection {
     case Right
 }
 
-class BubbleView: UIView, UIDynamicItem {
+class BubbleView: UIView {
     
     var background : UIView = UIView()
     var arrowView : UIView = UIView()
@@ -46,17 +46,14 @@ class BubbleView: UIView, UIDynamicItem {
         
         // Getting UILabel height for text
         let labelFont = UIFont(name: "Helvetica", size: 14.0)
-        var labelHeight = heightForView(text, font: labelFont!, width: onView.frame.size.width)
+        let labelHeight = heightForView(text, font: labelFont!, width: onView.frame.size.width)
 
         // Origin object info
-        let objX = forFrame.origin.x
         let objY = forFrame.origin.y
-        let objWidth : CGFloat = forFrame.size.width
         let objHeight : CGFloat = forFrame.size.height
         
         // Frame info
         let frmWidth : CGFloat = onView.frame.width
-        let frmHeight : CGFloat = onView.frame.height
         
         // Bubble info
         let alpha : CGFloat = 1.0

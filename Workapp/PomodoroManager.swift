@@ -119,16 +119,19 @@ class PomodoroManager {
         let predicate = NSPredicate(format: "date >= %@ and date <= %@", beginTodayDate, endTodayDate)
         fetchRequest.predicate = predicate
         
-        var error : NSError?
+        var resultsCount : Int = 0
         
-        let fetchedResults = managedObjectContext.executeFetchRequest(fetchRequest, error: &error) as! [NSManagedObject]?
+        do {
         
-        if let results = fetchedResults {
-            return results.count
-        } else {
-            println("Could not find recors for Pomodoros entity")
-            return 0
+            let fetchedResults = try managedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+            
+            resultsCount = fetchedResults.count
+            
+        } catch {
+            print("Error while executing fetch request.")
         }
+
+        return resultsCount
     }
     
     func todayPomodoros() -> Int {
@@ -144,16 +147,19 @@ class PomodoroManager {
         let predicate = NSPredicate(format: "date >= %@ and date <= %@", beginTodayDate, endTodayDate)
         fetchRequest.predicate = predicate
         
-        var error : NSError?
+        var resultsCount : Int = 0
         
-        let fetchedResults = managedObjectContext.executeFetchRequest(fetchRequest, error: &error) as! [NSManagedObject]?
-        
-        if let results = fetchedResults {
-            return results.count
-        } else {
-            println("Could not find recors for Pomodoros entity")
-            return 0
+        do {
+
+            let fetchedResults = try managedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+            
+            resultsCount = fetchedResults.count
+            
+        } catch {
+            print("Error while executing fetch request.")
         }
+        
+        return resultsCount
     }
     
     func breakFinished() {
@@ -162,18 +168,21 @@ class PomodoroManager {
     
     func remainNextLocalNotification() {
         
-        let notificationsArray = UIApplication.sharedApplication().scheduledLocalNotifications
+        if let notificationsArray = UIApplication.sharedApplication().scheduledLocalNotifications {
         
-        if (notificationsArray.count > 0) {
-            
-            let notification : UILocalNotification = notificationsArray.first as! UILocalNotification
-            
-            // Calculamos los segundos que quedan para que se dispare
-            if let notificationRemainSeconds = notification.fireDate?.timeIntervalSinceNow {
+            if (notificationsArray.count > 0) {
                 
-                self.remainSeconds = Int(notificationRemainSeconds)
+                if let notification = notificationsArray.first as UILocalNotification? {
+                    
+                    // Calculamos los segundos que quedan para que se dispare
+                    if let notificationRemainSeconds = notification.fireDate?.timeIntervalSinceNow {
+                        
+                        self.remainSeconds = Int(notificationRemainSeconds)
+                    }
+                }
+                
             }
-            
+
         }
         
     }
@@ -183,28 +192,36 @@ class PomodoroManager {
         // Insert pomodoro with pomodoroMinutes and NSDate
         let entity = NSEntityDescription.entityForName("Pomodoro", inManagedObjectContext: managedObjectContext)
         
-        var pomodoro = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedObjectContext)
+        let pomodoro = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedObjectContext)
         
         pomodoro.setValue(pomodoroMinutes, forKey: "length")
         pomodoro.setValue(NSDate(), forKey: "date")
         
-        var error : NSError?
-        if !managedObjectContext.save(&error) {
-            println("Error saving Core Data model")
-        } else {
+        do {
             
-            var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("workapp", ofType: "mp3")!)
+            try managedObjectContext.save()
+
+            let alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("workapp", ofType: "mp3")!)
             
-            var error:NSError?
-            audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
-            audioPlayer.prepareToPlay()
-            audioPlayer.play()
+            do {
+
+                audioPlayer = try AVAudioPlayer(contentsOfURL: alertSound)
+                audioPlayer.prepareToPlay()
+                audioPlayer.play()
+                
+                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                
+                updateBadgeIcon()
+                
+            } catch {
+                print("Error while loading AVAudioPlayer")
+            }
             
-            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-            
+
+        } catch {
+            print("Error while executing fetch request.")
         }
-        
-        updateBadgeIcon()
+
     }
     
     func updateBadgeIcon() {
@@ -215,30 +232,28 @@ class PomodoroManager {
     func promptForNotificationPermissions() {
         
         // Creamos las acciones para las notificaciones
-        var breakAction = UIMutableUserNotificationAction()
+        let breakAction = UIMutableUserNotificationAction()
         breakAction.identifier = "BREAK_ACTION"
         breakAction.title = NSLocalizedString("breakAction", comment: "")
         breakAction.activationMode = UIUserNotificationActivationMode.Background
         breakAction.destructive = false
         breakAction.authenticationRequired = false
         
-        var pomodoroAction = UIMutableUserNotificationAction()
+        let pomodoroAction = UIMutableUserNotificationAction()
         pomodoroAction.identifier = "POMODORO_ACTION"
         pomodoroAction.title = NSLocalizedString("pomodoroAction", comment: "")
         pomodoroAction.activationMode = UIUserNotificationActivationMode.Background
         pomodoroAction.destructive = false
         pomodoroAction.authenticationRequired = false
         
-        var notificationCategory = UIMutableUserNotificationCategory()
+        let notificationCategory = UIMutableUserNotificationCategory()
         notificationCategory.identifier = "POMODORO_CATEGORY"
         
         notificationCategory.setActions([breakAction,pomodoroAction], forContext: UIUserNotificationActionContext.Default)
         
-        var categories = NSSet(objects: notificationCategory)
+        let categories = NSSet(objects: notificationCategory)
         
-        let types = UIUserNotificationType.Badge | UIUserNotificationType.Sound | UIUserNotificationType.Alert
-        
-        let mySettings = UIUserNotificationSettings(forTypes: types, categories: categories as Set)
+        let mySettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: categories as? Set)
         
         UIApplication.sharedApplication().registerUserNotificationSettings(mySettings)
         
@@ -283,23 +298,21 @@ class PomodoroManager {
         
         fetchRequest.predicate = predicate
         
-        var error : NSError?
-        
-        let fetchedResults = managedObjectContext.executeFetchRequest(fetchRequest, error: &error) as! [NSManagedObject]?
-        
-        if let results = fetchedResults {
+        do {
             
-            for elem in results {
+            let fetchedResults = try managedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+
+            for elem in fetchedResults {
                 managedObjectContext.deleteObject(elem as NSManagedObject)
             }
             
-            managedObjectContext.save(nil)
+            try managedObjectContext.save()
+            
+            updateBadgeIcon()
 
-        } else {
-            println("Could not delete recors for Pomodoros entity")
+        } catch {
+            print("Error while executing fetch request.")
         }
-
-        updateBadgeIcon()
         
     }
     
@@ -307,22 +320,21 @@ class PomodoroManager {
 
         let fetchRequest = NSFetchRequest(entityName: "Pomodoro")
         
-        var error : NSError?
-        
-        let fetchedResults = managedObjectContext.executeFetchRequest(fetchRequest, error: &error) as! [NSManagedObject]?
-        
-        if let results = fetchedResults {
+        do {
             
-            for elem in results {
+            let fetchedResults = try managedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+            
+            for elem in fetchedResults {
                 managedObjectContext.deleteObject(elem as NSManagedObject)
             }
-            managedObjectContext.save(nil)
             
-        } else {
-            println("Could not delete recors for Pomodoros entity")
+            try managedObjectContext.save()
+            
+            updateBadgeIcon()
+            
+        } catch {
+            print("Error while executing fetch request.")
         }
-        
-        updateBadgeIcon()
         
     }
     
@@ -340,25 +352,21 @@ class PomodoroManager {
         
         fetchRequest.predicate = predicate
         
-        var error : NSError?
-        
-        let fetchedResults = managedObjectContext.executeFetchRequest(fetchRequest, error: &error) as! [NSManagedObject]?
-        
-        if let results = fetchedResults {
+        var totalMinutes : Int = 0
+
+        do {
+
+            let fetchedResults = try managedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
             
-            var totalMinutes : Int = 0
-            
-            for elem in results {
+            for elem in fetchedResults {
                 totalMinutes += elem.valueForKey("length") as! Int
             }
             
-            return totalMinutes
-            
-        } else {
-            println("Could not retrieve recors for today work minutes")
+        } catch {
+            print("Error while executing fetch request.")
         }
         
-        return 0
+        return totalMinutes
         
     }
 

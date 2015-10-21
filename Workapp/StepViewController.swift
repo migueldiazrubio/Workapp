@@ -79,9 +79,9 @@ class StepViewController: UIViewController {
         
         parentPageViewController.currentPage = stepNumber!
         
-        var duration = 0.5
+        let duration = 0.5
 
-        UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.2, options: nil, animations: { () -> Void in
+        UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.2, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
 
             self.titleLabel.alpha = 1.0
             self.subtitleLabel.alpha = 1.0

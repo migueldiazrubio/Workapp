@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Fabric
-import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -106,10 +104,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
         
-        var pomodoroMins : Int? = userDefaults.objectForKey("pomodoroMinutes") as! Int?
-        var breakMins : Int? = userDefaults.objectForKey("breakMinutes") as! Int?
-        var pomodoroColor : Int? = userDefaults.objectForKey("pomodoroColor") as! Int?
-        var breakColor : Int? = userDefaults.objectForKey("breakColor") as! Int?
+        let pomodoroMins : Int? = userDefaults.objectForKey("pomodoroMinutes") as! Int?
+        let breakMins : Int? = userDefaults.objectForKey("breakMinutes") as! Int?
+        let pomodoroColor : Int? = userDefaults.objectForKey("pomodoroColor") as! Int?
+        let breakColor : Int? = userDefaults.objectForKey("breakColor") as! Int?
         
         if (pomodoroMins == nil || breakMins == nil || pomodoroColor == nil || breakColor == nil) {
             pomodoroManager.pomodoroMinutes = 25

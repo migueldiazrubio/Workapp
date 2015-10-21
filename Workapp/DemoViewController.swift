@@ -87,7 +87,7 @@ extension DemoViewController : UIPageViewControllerDataSource {
             appDelegate.showMainViewController()
 
         } else {
-            var nextVC = pages[currentPage]
+            let nextVC = pages[currentPage]
             currentPage++
             setViewControllers([nextVC], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
         }
@@ -122,8 +122,8 @@ extension DemoViewController : UIPageViewControllerDataSource {
         return (currentPage - 1)
     }
     
-    override func supportedInterfaceOrientations() -> Int {
-        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
     }
     
     override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {

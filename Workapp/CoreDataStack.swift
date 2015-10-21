@@ -46,7 +46,7 @@ class CoreDataStack {
     let fileManager = NSFileManager.defaultManager()
     
     let urls = fileManager.URLsForDirectory(.DocumentDirectory,
-        inDomains: .UserDomainMask) as! [NSURL]
+        inDomains: .UserDomainMask)
 
     let documentsURL = urls[0]
     
@@ -56,25 +56,29 @@ class CoreDataStack {
     let options =
     [NSMigratePersistentStoresAutomaticallyOption: true]
     
-    var error: NSError? = nil
-    store = psc.addPersistentStoreWithType(NSSQLiteStoreType,
-      configuration: nil,
-      URL: storeURL,
-      options: options,
-      error:&error)
+    do {
+        store = try psc.addPersistentStoreWithType(NSSQLiteStoreType,
+            configuration: nil,
+            URL: storeURL,
+            options: options)
     
-    if store == nil {
-      println("Error adding persistent store: \(error)")
-      abort()
+    } catch {
+        print("Error adding persistent store")
+        abort()
     }
     
   }
   
   func saveContext() {
-    var error: NSError? = nil
-    if context.hasChanges && !context.save(&error) {
-      println("Could not save: \(error), \(error?.userInfo)")
+    
+    do {
+        if context.hasChanges {
+            try context.save()
+        }
+    } catch {
+        print("Could not save context")
     }
+
   }
 
   

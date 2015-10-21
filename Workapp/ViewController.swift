@@ -67,7 +67,7 @@ class ViewController: UIViewController {
     }
     
     func updateLeaderboard() {
-        var todayPomodoros = pomodoroManager.todayPomodoros()
+        let todayPomodoros = pomodoroManager.todayPomodoros()
         
         if (todayPomodoros > 0) {
             var label = "\(todayPomodoros) "
@@ -88,8 +88,8 @@ class ViewController: UIViewController {
     func timeElapsedString() -> String {
         let todayTotalMinutes = pomodoroManager.todayTotalMinutes()
 
-        var hours : String = String(todayTotalMinutes / 60)
-        var minutes : String = String(format: "%02d", (todayTotalMinutes % 60))
+        let hours : String = String(todayTotalMinutes / 60)
+        let minutes : String = String(format: "%02d", (todayTotalMinutes % 60))
         
         return " (\(hours):\(minutes))"
     }
@@ -286,7 +286,7 @@ class ViewController: UIViewController {
         let scheduledLocalNotifications = UIApplication.sharedApplication().scheduledLocalNotifications
         
         // Si no hay notificaciones programadas en curso
-        if (scheduledLocalNotifications.isEmpty) {
+        if (scheduledLocalNotifications!.isEmpty) {
             // Si el cronometro tiene el contador activado
             if (pomodoroManager.counting) {
                 
@@ -314,7 +314,7 @@ class ViewController: UIViewController {
         } else {
             
             // Actualizamos el timer en base a la notificación
-            if let fireDate = scheduledLocalNotifications.last?.fireDate {
+            if let fireDate = scheduledLocalNotifications!.last?.fireDate {
                 pomodoroManager.remainSeconds = Int(fireDate.timeIntervalSinceNow)
             }
             
@@ -341,7 +341,7 @@ class ViewController: UIViewController {
                 // Changing background color
                 let position = gesture.locationInView(self.view).y
                 let maxHeight = self.view.frame.size.height
-                var percentage = Int((position / maxHeight) * 10)
+                let percentage = Int((position / maxHeight) * 10)
                 
                 UIView.animateWithDuration(0.2, animations: { () -> Void in
                     self.view.backgroundColor = self.colours[percentage] as? UIColor
@@ -380,7 +380,7 @@ class ViewController: UIViewController {
                 
                 if (!pomodoroManager.counting) {
                     
-                    var point = gesture.translationInView(self.view)
+                    let point = gesture.translationInView(self.view)
                     let maxWidth = self.view.frame.size.width
                     let percentage : Float = Float(point.x / (maxWidth * 2))
                     var move : Int = 0
@@ -450,7 +450,7 @@ class ViewController: UIViewController {
         return true
     }
     
-    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
+    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
         if (motion == UIEventSubtype.MotionShake) {
             if (!pomodoroManager.counting) {
                 switchMode()
@@ -596,7 +596,7 @@ class ViewController: UIViewController {
                 
             } else {
                 
-                var originalPosition : CGPoint = bubbleView!.center
+                let originalPosition : CGPoint = bubbleView!.center
                 bubbleView?.frame.origin.x = -100
                 bubbleView?.frame.origin.y = -100
                 
@@ -618,8 +618,8 @@ class ViewController: UIViewController {
         }
         
     }
-    
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         animateBubble()
     }
     
