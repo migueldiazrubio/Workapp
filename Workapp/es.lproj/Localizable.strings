@@ -41,4 +41,10 @@
 "tutorial_step_4" = "Visualiza las sesiones y su duración total en el día de hoy";
 "tutorial_step_5" = "Accede a la ayuda para conocer como utilizar Workapp";
 
-
+"quickactions_newpomodoro" = "Trabajar";
+"quickactions_newpomodoro_subtitle25" = "Sesión normal de trabajo";
+"quickactions_newpomodoro_subtitle15" = "Sesión corta de trabajo";
+"quickactions_cancel_break" = "Cancelar descanso";
+"quickactions_cancel_break_subtitle" = "Comenzar a trabajar";
+"quickactions_cancel_pomodoro" = "Cancelar trabajo";
+"quickactions_cancel_pomodoro_subtitle" = "Comenzar a descansar";

@@ -23,6 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         showDemoViewController()
         
+        if #available(iOS 9.0, *) {
+            configureQuickActions()
+        }
+        
         return true
     }
     
@@ -98,6 +102,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NSUserDefaults.standardUserDefaults().synchronize()
         
+        if #available(iOS 9.0, *) {
+            configureQuickActions()
+        }
     }
     
     func loadData() {
@@ -139,20 +146,105 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if notification.category == "POMODORO_CATEGORY" {
             
             if identifier == "POMODORO_ACTION" {
-                pomodoroManager.breakTime = false
+                startPomodoro()
             }
             
             if identifier == "BREAK_ACTION" {
-                pomodoroManager.breakTime = true
+                startBreaktime()
             }
             
-            pomodoroManager.stop()
-            pomodoroManager.start()
+        }
+        completionHandler()
+    }
+    
+    func startPomodoro() {
+        pomodoroManager.breakTime = false
+        pomodoroManager.stop()
+        pomodoroManager.start()
+    }
+    func startBreaktime() {
+        pomodoroManager.breakTime = true
+        pomodoroManager.stop()
+        pomodoroManager.start()
+    }
+    
+    // Quick Actions for 3D Touch
+    @available(iOS 9.0, *)
+    func configureQuickActions() {
+
+        // New normal pomodoro
+        let newPomodoro25ShortcutType = "com.migueldiazrubio.Workapp.newPomodoro25"
+        let newPomodoro25ShortcutItem = UIApplicationShortcutItem(
+            type: newPomodoro25ShortcutType,
+            localizedTitle: NSLocalizedString("quickactions_newpomodoro", comment: ""),
+            localizedSubtitle: NSLocalizedString("quickactions_newpomodoro_subtitle25", comment: ""),
+            icon: UIApplicationShortcutIcon(templateImageName: "pomodoro_25"),
+            userInfo: nil)
+        
+        // New short pomodoro
+        let newPomodoro15ShortcutType = "com.migueldiazrubio.Workapp.newPomodoro15"
+        let newPomodoro15ShortcutItem = UIApplicationShortcutItem(
+                type: newPomodoro15ShortcutType,
+                localizedTitle: NSLocalizedString("quickactions_newpomodoro", comment: ""),
+                localizedSubtitle: NSLocalizedString("quickactions_newpomodoro_subtitle15", comment: ""),
+                icon: UIApplicationShortcutIcon(templateImageName: "pomodoro_15"),
+                userInfo: nil)
+
+        // Change to breaktime / pomodoro
+        
+        var shortcutTitle = ""
+        var shortcutSubtitle = ""
+        
+        if (pomodoroManager.breakTime) {
+            shortcutTitle = NSLocalizedString("quickactions_cancel_break", comment: "")
+            shortcutSubtitle = NSLocalizedString("quickactions_cancel_break_subtitle", comment: "")
+        } else {
+            shortcutTitle = NSLocalizedString("quickactions_cancel_pomodoro", comment: "")
+            shortcutSubtitle = NSLocalizedString("quickactions_cancel_pomodoro_subtitle", comment: "")
+        }
+
+        let changeShortcutType = "com.migueldiazrubio.Workapp.changeMode"
+        let changeShortcutItem = UIApplicationShortcutItem(
+                    type: changeShortcutType,
+                    localizedTitle: shortcutTitle,
+                    localizedSubtitle: shortcutSubtitle,
+                    icon: UIApplicationShortcutIcon(templateImageName: "changemode"),
+                    userInfo: nil)
+        
+        UIApplication.sharedApplication().shortcutItems =
+            [ newPomodoro25ShortcutItem, newPomodoro15ShortcutItem]
+        
+        if pomodoroManager.counting {
+            UIApplication.sharedApplication().shortcutItems?.append(changeShortcutItem)
         }
         
-        completionHandler()
-        
     }
+    
+    @available(iOS 9.0, *)
+    func application(application: UIApplication,
+        performActionForShortcutItem
+        shortcutItem: UIApplicationShortcutItem,
+        completionHandler: (Bool) -> Void) {
+
+        switch shortcutItem.type {
+        case "com.migueldiazrubio.Workapp.newPomodoro25":
+            pomodoroManager.pomodoroMinutes = 25
+            startPomodoro()
+        case "com.migueldiazrubio.Workapp.newPomodoro15":
+            pomodoroManager.pomodoroMinutes = 15
+            startPomodoro()
+        case "com.migueldiazrubio.Workapp.changeMode":
+            if pomodoroManager.breakTime {
+                startPomodoro()
+                    } else {
+                        startBreaktime()
+            }
+        default: break
+        }
+        
+        completionHandler(true)
+    }
+    
     
 }
 

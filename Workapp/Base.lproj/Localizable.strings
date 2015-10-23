@@ -40,3 +40,10 @@
 "tutorial_step_4" = "Display sessions and its total length today";
 "tutorial_step_5" = "Get the help to know how to use Workapp";
 
+"quickactions_newpomodoro" = "Work";
+"quickactions_newpomodoro_subtitle25" = "Normal work session";
+"quickactions_newpomodoro_subtitle15" = "Short work session";
+"quickactions_cancel_break" = "Cancel break";
+"quickactions_cancel_break_subtitle" = "Start working";
+"quickactions_cancel_pomodoro" = "Cancel work";
+"quickactions_cancel_pomodoro_subtitle" = "Start resting";
