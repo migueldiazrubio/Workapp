@@ -229,9 +229,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         switch shortcutItem.type {
         case "com.migueldiazrubio.Workapp.newPomodoro25":
             pomodoroManager.pomodoroMinutes = 25
+            saveData()
             startPomodoro()
         case "com.migueldiazrubio.Workapp.newPomodoro15":
             pomodoroManager.pomodoroMinutes = 15
+            saveData()
             startPomodoro()
         case "com.migueldiazrubio.Workapp.changeMode":
             if pomodoroManager.breakTime {
